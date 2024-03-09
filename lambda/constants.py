@@ -140,7 +140,7 @@ HIRING_ANIME = [
         "genere": "Dark Thriller",
         "hiring_day": "Sun",
         "season": "1",
-        "episode": "12"
+        "episode": "12",
         "rating": 4.3,
         "follower": 1600
     }
