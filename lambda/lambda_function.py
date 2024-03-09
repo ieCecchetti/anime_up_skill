@@ -59,8 +59,9 @@ class TodayAnimeIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         current_day = retrieve_day()
         # today_list = [ anime['name'] for anime in constants.HIRING_ANIME if anime['hiring_day'] == current_day ]
-        # today_list_str = ', '.join(today_list) or 'stograncasso'
-        speak_output = f"Oggi, ci sono in programma le uscite di: {today_list_str}"
+        today_list = []
+        today_list_str = ', '.join(today_list) or 'stograncasso'
+        speak_output = f"Oggi, {current_day}, ci sono in programma le uscite di: {today_list_str}"
 
         # speak_output = f"Oggi, {current_day}, ci sono in programma le uscite di: stograncasso"
         
