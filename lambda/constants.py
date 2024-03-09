@@ -27,65 +27,52 @@ HIRING_ANIME = [
         "episode": "8"
     },
     {
-        {
-            "name": "the witch and the beast"
-            "descr": "Guideau è una giovane donna maledetta da una strega, costretta a portare con sé un oscuro segreto. Ashaf è un uomo alto con una bara legata alla schiena e segreti non ancora svelati. In un dark fantasy pieno di avventura, riusciranno gli improbabili eroi a trovare la vendetta contro le streghe?",
-            "genere": "Dark Fantasy",
-            "hiring_day": "Thu",
-            "season": "1",
-            "episode": "8"
-        }
-        
+        "name": "the witch and the beast"
+        "descr": "Guideau è una giovane donna maledetta da una strega, costretta a portare con sé un oscuro segreto. Ashaf è un uomo alto con una bara legata alla schiena e segreti non ancora svelati. In un dark fantasy pieno di avventura, riusciranno gli improbabili eroi a trovare la vendetta contro le streghe?",
+        "genere": "Dark Fantasy",
+        "hiring_day": "Thu",
+        "season": "1",
+        "episode": "8"
     },
     {
-        {
-            "name": "frieren - oltre la fine del viaggio"
-            "descr": "Frieren è una maga che fa parte della squadra di eroi che ha sconfitto il re dei demoni. Essendo un'elfa, per lei i dieci anni passati con gli altri eroi rappresentano soltanto un piccolo frammento della sua lunga vita. Ora, Frieren riflette sul significato di quelle memorie e sui vari sentimenti che prova a riguardo.",
-            "genere": "Fantasy Drama Adventure",
-            "hiring_day": "Fri",
-            "season": "1",
-            "episode": "26"
-        }
+        "name": "frieren - oltre la fine del viaggio"
+        "descr": "Frieren è una maga che fa parte della squadra di eroi che ha sconfitto il re dei demoni. Essendo un'elfa, per lei i dieci anni passati con gli altri eroi rappresentano soltanto un piccolo frammento della sua lunga vita. Ora, Frieren riflette sul significato di quelle memorie e sui vari sentimenti che prova a riguardo.",
+        "genere": "Fantasy Drama Adventure",
+        "hiring_day": "Fri",
+        "season": "1",
+        "episode": "26"
     },
     {
-        {
-            "name": "firefighters daigo ",
-            "descr": "",
-            "genere": "Drama Adventure",
-            "hiring_day": "Sat",
-            "season": "1",
-            "episode": "20"
-        }
+        "name": "firefighters daigo ",
+        "descr": "",
+        "genere": "Drama Adventure",
+        "hiring_day": "Sat",
+        "season": "1",
+        "episode": "20"
+    },
+    {  
+        "name": "blue exorcist",
+        "descr": "",
+        "genere": "Fantasy Adventure",
+        "hiring_day": "Sat",
+        "season": "3",
+        "episode": "9"
     },
     {
-        {
-            "name": "blue exorcist",
-            "descr": "",
-            "genere": "Fantasy Adventure",
-            "hiring_day": "Sat",
-            "season": "3",
-            "episode": "9"
-        }
+        "name": "mashle - magic and muscles",
+        "descr": "La storia si svolge in un mondo in cui esiste la magia e viene usata per qualunque occorrenza della vita quotidiana. Mash è un giovane che vive nascosto nella foresta e trascorre le giornate impegnandosi in potenti esercizi per il corpo. Non riesce a usare la magia ma vive comunque una vita pacifica con suo padre. Un giorno però la sua vita viene messa in pericolo; E poi guardatelo.",
+        "genere": "Fantasy Adventure",
+        "hiring_day": "Sat",
+        "season": "2",
+        "episode": "12"
     },
     {
-        {
-            "name": "mashle - magic and muscles",
-            "descr": "La storia si svolge in un mondo in cui esiste la magia e viene usata per qualunque occorrenza della vita quotidiana. Mash è un giovane che vive nascosto nella foresta e trascorre le giornate impegnandosi in potenti esercizi per il corpo. Non riesce a usare la magia ma vive comunque una vita pacifica con suo padre. Un giorno però la sua vita viene messa in pericolo; E poi guardatelo.",
-            "genere": "Fantasy Adventure",
-            "hiring_day": "Sat",
-            "season": "2",
-            "episode": "12"
-        }
-    },
-    {
-        {
-            "name": "solo leveling",
-            "descr": "Dopo essere stato brutalmente massacrato dai mostri in un dungeon di alto rango, Jinwoo è tornato con il Sistema, un programma che solo lui poteva vedere, che lo sta facendo salire di livello in ogni modo. Ora, è ispirato a scoprire i segreti dietro i suoi poteri e il dungeon che li ha generati.",
-            "genere": "Fantasy Adventure",
-            "hiring_day": "Sat",
-            "season": "1",
-            "episode": "8"
-        }
+        "name": "solo leveling",
+        "descr": "Dopo essere stato brutalmente massacrato dai mostri in un dungeon di alto rango, Jinwoo è tornato con il Sistema, un programma che solo lui poteva vedere, che lo sta facendo salire di livello in ogni modo. Ora, è ispirato a scoprire i segreti dietro i suoi poteri e il dungeon che li ha generati.",
+        "genere": "Fantasy Adventure",
+        "hiring_day": "Sat",
+        "season": "1",
+        "episode": "8"
     },
     {
         {
