@@ -71,6 +71,7 @@ class TodayAnimeIntentHandler(AbstractRequestHandler):
                 .response
         )
         
+        
 class FollowableAnimeListIntentHandler(AbstractRequestHandler):
     """Handler for FollowableAnimeListIntent."""
     def can_handle(self, handler_input):
@@ -79,11 +80,9 @@ class FollowableAnimeListIntentHandler(AbstractRequestHandler):
         
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        max_num = 
-        random_list = [constants.HIRING_ANIME[random.randint(0, N)]['name'] for i in 5]
-        today_list = [anime['name'] for anime in constants.HIRING_ANIME if anime['hiring_day'] == current_day]
+        hiring_list = [anime['name'] for anime in constants.HIRING_ANIME]
 
-        # speak_output = f"Oggi, {current_day}, ci sono in programma le uscite di: stograncasso"
+        speak_output = f"Al momento i disponibili sono: {', '.join(hiring_list)};"
         
         return (
             handler_input.response_builder
