@@ -2,6 +2,7 @@ FALLBACK_ASK = "eh mo, ti serve altro?"
 
 HIRING_ANIME = [
     {
+        "id": 1,
         "name": "tsukimichi - moonlit fantasy",
         "descr": "Makoto Misumi era solo un adolescente medio che all'improvviso fu convocato in un altro mondo come un eroe. Ma la dea di questo mondo lo definì brutto e gli tolse il suo status di eroe costringendolo a rimanere li in disparte ai bordi di quel mondo. Cosi' lui decide di vivere la sua esperienza al 100%. Questa e' la storia.",
         "genere": "Isekai",
@@ -12,6 +13,7 @@ HIRING_ANIME = [
         "follower": 72200
     },
     {
+        "id": 2,
         "name": "classroom of the elite",
         "descr": "Ayanokoji Kiyotaka sta per cominciare il suo percorso scolastico presso il 'Liceo per la formazione di alto livello di Tokyo'. Agli studenti di tale scuola, alla fine dei corsi, è garantita l'ammissione al college scelto o verrà trovato lavoro. Si accorge subito che non e' un normale liceo e che la sua non e' una classe qualunque.",
         "genere": "Gakuen",
@@ -22,6 +24,7 @@ HIRING_ANIME = [
         "follower": 106700
     },
     {
+        "id": 1,
         "name": "metallic rouge",
         "descr": "In un mondo in cui gli umani coesistono con gli androidi chiamati Nean, un gruppo noto come Immortal Nine si ribella alla società. Incaricati di eliminare i rivoltosi, un Nean di nome Rouge Redstar (alias Metal Rouge) e l'investigatrice Naomi Orthmann si recano su Marte per rintracciarli.",
         "genere": "Cyber Punk",
