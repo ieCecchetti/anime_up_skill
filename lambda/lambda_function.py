@@ -94,6 +94,24 @@ class AllAnimeIntentHandler(AbstractRequestHandler):
         )
 
 
+class AddAnimeIntentHandler(AbstractRequestHandler):
+    """Handler for AddAnimeIntent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("AddAnimeIntent")(handler_input)
+        
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speak_output = f"Ok ho aggiunto l'anime alla tua lista"
+        
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .ask(constants.FALLBACK_ASK)
+                .response
+        )
+
+
 class HelpIntentHandler(AbstractRequestHandler):
     """Handler for Help Intent."""
     def can_handle(self, handler_input):
@@ -212,6 +230,7 @@ sb = SkillBuilder()
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(TodayAnimeIntentHandler())
 sb.add_request_handler(AllAnimeIntentHandler())
+sb.add_request_handler(AddAnimeIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(FallbackIntentHandler())
