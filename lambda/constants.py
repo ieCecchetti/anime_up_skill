@@ -34,6 +34,12 @@ HIRING_ANIME = {
         "genere": "Fantasy Adventure",
         "hiring_day": "Fri",
         "last_ep": "12",
+    },
+    "solo leveling": {
+        "descr": "Dopo essere stato brutalmente massacrato dai mostri in un dungeon di alto rango, Jinwoo è tornato con il Sistema, un programma che solo lui poteva vedere, che lo sta facendo salire di livello in ogni modo. Ora, è ispirato a scoprire i segreti dietro i suoi poteri e il dungeon che li ha generati.",
+        "genere": "Fantasy Adventure",
+        "hiring_day": "Fri",
+        "last_ep": "8",
     }
     
 }
