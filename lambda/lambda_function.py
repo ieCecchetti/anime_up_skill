@@ -29,7 +29,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Ciao, mio piccolo nerd preferito, dimmi pure, che ti serve? Posso dirti la lista degli anime che escono o info su uno di loro."
+        speak_output = "Ciao, mio piccolo nerd preferito, dimmi pure, che ti serve? Di 'anime up funzionalita' per la lista comandi"
 
         return (
             handler_input.response_builder
