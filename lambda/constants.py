@@ -1,3 +1,5 @@
+FALLBACK_ASK = "eh mo, ti serve altro?"
+
 HIRING_ANIME = [
     "tsukimichi - moonlit fantasy": {
         "descr": "Makoto Misumi era solo un adolescente medio che all'improvviso fu convocato in un altro mondo come un eroe. Ma la dea di questo mondo lo definì brutto e gli tolse il suo status di eroe costringendolo a rimanere li in disparte ai bordi di quel mondo. Cosi' lui decide di vivere la sua esperienza al 100%. Questa e' la storia.",
