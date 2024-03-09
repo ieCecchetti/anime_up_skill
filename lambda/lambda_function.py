@@ -102,7 +102,13 @@ class AddAnimeIntentHandler(AbstractRequestHandler):
         
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = f"Ok ho aggiunto l'anime alla tua lista"
+        try:
+            anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value
+            speak_output = f"Ok ho aggiunto {anime_name} l'anime alla tua lista."
+            
+        except KeyError:
+            # Handle the case when "anime_name" slot is not present in the request
+            speech_text = "Scusa non ho capito il nome dell'anime. Puoi ripeterlo?"
         
         return (
             handler_input.response_builder
