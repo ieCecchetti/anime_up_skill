@@ -47,7 +47,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 #     return day_of_week_str
 
 class TodayAnimeIntentHandler(AbstractRequestHandler):
-    """Handler for Hello World Intent."""
+    """Handler for TodayAnimeIntent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("TodayAnimeIntent")(handler_input)
