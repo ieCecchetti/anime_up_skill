@@ -22,6 +22,8 @@ import constants
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
+my_anime_list = []
+
 def retrieve_day():
     # Get the current date and time
     current_datetime = datetime.now()
@@ -70,8 +72,8 @@ class TodayAnimeIntentHandler(AbstractRequestHandler):
                 .ask(constants.FALLBACK_ASK)
                 .response
         )
-        
-        
+
+
 class FollowableAnimeListIntentHandler(AbstractRequestHandler):
     """Handler for FollowableAnimeListIntent."""
     def can_handle(self, handler_input):
@@ -83,6 +85,26 @@ class FollowableAnimeListIntentHandler(AbstractRequestHandler):
         hiring_list = [anime['name'] for anime in constants.HIRING_ANIME]
 
         speak_output = f"Al momento i disponibili sono: {', '.join(hiring_list)};"
+        
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .ask(constants.FALLBACK_ASK)
+                .response
+        )
+
+    
+class AddAnimeIntentHandler(AbstractRequestHandler):
+    """Handler for AddAnimeIntent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("AddAnimeIntent")(handler_input)
+        
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        hiring_list = [anime['name'] for anime in constants.HIRING_ANIME]
+
+        speak_output = f"Ok ho aggiunto l'anime alla tua lista"
         
         return (
             handler_input.response_builder
