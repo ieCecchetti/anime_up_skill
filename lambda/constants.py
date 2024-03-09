@@ -19,7 +19,7 @@ HIRING_ANIME = [
         "genere": "Gakuen",
         "hiring_day": "Wed",
         "season": "3",
-        "episode": "9"
+        "episode": "9",
         "rating": 4.8,
         "follower": 106700
     },
