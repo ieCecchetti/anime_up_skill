@@ -27,7 +27,7 @@ HIRING_ANIME = [
         "episode": "8"
     },
     {
-        "name": "the witch and the beast"
+        "name": "the witch and the beast",
         "descr": "Guideau è una giovane donna maledetta da una strega, costretta a portare con sé un oscuro segreto. Ashaf è un uomo alto con una bara legata alla schiena e segreti non ancora svelati. In un dark fantasy pieno di avventura, riusciranno gli improbabili eroi a trovare la vendetta contro le streghe?",
         "genere": "Dark Fantasy",
         "hiring_day": "Thu",
@@ -35,7 +35,7 @@ HIRING_ANIME = [
         "episode": "8"
     },
     {
-        "name": "frieren - oltre la fine del viaggio"
+        "name": "frieren - oltre la fine del viaggio",
         "descr": "Frieren è una maga che fa parte della squadra di eroi che ha sconfitto il re dei demoni. Essendo un'elfa, per lei i dieci anni passati con gli altri eroi rappresentano soltanto un piccolo frammento della sua lunga vita. Ora, Frieren riflette sul significato di quelle memorie e sui vari sentimenti che prova a riguardo.",
         "genere": "Fantasy Drama Adventure",
         "hiring_day": "Fri",
@@ -75,45 +75,35 @@ HIRING_ANIME = [
         "episode": "8"
     },
     {
-        {
-            "name": "one piece"
-            "descr": "Monkey D. Rufy vuole diventare il Re dei Pirati, e non si lascerà fermare da niente e da nessuno! La rotta è segnata, le acque insidiose della Rotta Maggiore lo aspettano, e lui non si fermerà finché non avrà trovato il più grande tesoro al mondo, il leggendario One Piece!",
-            "genere": "Fantasy Adventure",
-            "hiring_day": "Sun",
-            "season": "1",
-            "episode": "629"
-        }           
+        "name": "one piece",
+        "descr": "Monkey D. Rufy vuole diventare il Re dei Pirati, e non si lascerà fermare da niente e da nessuno! La rotta è segnata, le acque insidiose della Rotta Maggiore lo aspettano, e lui non si fermerà finché non avrà trovato il più grande tesoro al mondo, il leggendario One Piece!",
+        "genere": "Fantasy Adventure",
+        "hiring_day": "Sun",
+        "season": "1",
+        "episode": "629"
     },
     {
-        {
-            "name": "the fire hunter"
-            "descr": "Al di fuori delle barriere magiche si trova un mondo invaso da bestie infuocate note come Demoni di Fuoco, e gli unici che possono proteggere l'umanità sono i Cacciatori di Fuoco. Nei boschi oscuri dove si aggirano le bestie, Toko, un giovane abitante del villaggio, viene salvato dall'attacco di uno di questi abili inseguitori, Koshi. Ma il loro incontro non è stato casuale e un nuovo destino ha inizio.",
-            "genere": "Drama Fantasy Adventure",
-            "hiring_day": "Sun",
-            "season": "1",
-            "episode": "21"
-        }
+        "name": "the fire hunter",
+        "descr": "Al di fuori delle barriere magiche si trova un mondo invaso da bestie infuocate note come Demoni di Fuoco, e gli unici che possono proteggere l'umanità sono i Cacciatori di Fuoco. Nei boschi oscuri dove si aggirano le bestie, Toko, un giovane abitante del villaggio, viene salvato dall'attacco di uno di questi abili inseguitori, Koshi. Ma il loro incontro non è stato casuale e un nuovo destino ha inizio.",
+        "genere": "Drama Fantasy Adventure",
+        "hiring_day": "Sun",
+        "season": "1",
+        "episode": "21"
     },
     {
-        {
-            "name": "shagiri la frontier"
-            "descr": "Rakuro Hizutome è un cacciatore di giochi brutti, che gioca con il soprannome di Sunraku fino a completarli al 100%. Dopo aver completato l'ennesimo titolo, per staccare un po' la spina si fa consigliare Shangri-La Frontier, un gioco VR full-dive di prima categoria con 30 milioni di giocatori registrati. Decide quindi di mettere alla prova tutte le abilità acquisite come esperto cacciatore di kusoge all'interno di un vero e proprio gioco.",
-            "genere": "Thriller Fantasy Adventure",
-            "hiring_day": "Sun",
-            "season": "1",
-            "episode": "21"
-        }
-        
+        "name": "shagiri la frontier",
+        "descr": "Rakuro Hizutome è un cacciatore di giochi brutti, che gioca con il soprannome di Sunraku fino a completarli al 100%. Dopo aver completato l'ennesimo titolo, per staccare un po' la spina si fa consigliare Shangri-La Frontier, un gioco VR full-dive di prima categoria con 30 milioni di giocatori registrati. Decide quindi di mettere alla prova tutte le abilità acquisite come esperto cacciatore di kusoge all'interno di un vero e proprio gioco.",
+        "genere": "Thriller Fantasy Adventure",
+        "hiring_day": "Sun",
+        "season": "1",
+        "episode": "21"
     },
     {
-        {
-            "name": "theatre of darkness"
-            "descr": "",
-            "genere": "Dark Thriller",
-            "hiring_day": "Sun",
-            "season": "1",
-            "episode": "12"
-        }
-        
+        "name": "theatre of darkness",
+        "descr": "",
+        "genere": "Dark Thriller",
+        "hiring_day": "Sun",
+        "season": "1",
+        "episode": "12"
     }
 ]
