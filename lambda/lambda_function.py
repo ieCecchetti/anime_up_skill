@@ -29,7 +29,7 @@ def retrieve_day():
     day_of_week = current_datetime.weekday()
     # Get the day of the week as a string (e.g., 'Mon', 'Tue', etc.)
     day_of_week_str = current_datetime.strftime('%a')
-    return 'Lun'
+    return day_of_week_str
 
 class LaunchRequestHandler(AbstractRequestHandler):
     """Handler for Skill Launch."""
