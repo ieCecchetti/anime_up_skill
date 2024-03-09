@@ -84,7 +84,7 @@ class FollowableAnimeListIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         hiring_list = [anime['name'] for anime in constants.HIRING_ANIME]
 
-        speak_output = f"Al momento i disponibili sono: {', '.join(hiring_list)};"
+        speak_output = f"Al momento i disponibili sono: {', '.join(hiring_list)}"
         
         return (
             handler_input.response_builder
@@ -92,24 +92,6 @@ class FollowableAnimeListIntentHandler(AbstractRequestHandler):
                 .ask(constants.FALLBACK_ASK)
                 .response
         )
-
-    
-# class AddAnimeIntentHandler(AbstractRequestHandler):
-#     """Handler for AddAnimeIntent."""
-#     def can_handle(self, handler_input):
-#         # type: (HandlerInput) -> bool
-#         return ask_utils.is_intent_name("AddAnimeIntent")(handler_input)
-        
-#     def handle(self, handler_input):
-#         # type: (HandlerInput) -> Response
-#         speak_output = f"Ok ho aggiunto l'anime alla tua lista"
-        
-#         return (
-#             handler_input.response_builder
-#                 .speak(speak_output)
-#                 .ask(constants.FALLBACK_ASK)
-#                 .response
-#         )
 
 
 class HelpIntentHandler(AbstractRequestHandler):
@@ -230,7 +212,6 @@ sb = SkillBuilder()
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(TodayAnimeIntentHandler())
 sb.add_request_handler(FollowableAnimeListIntentHandler())
-sb.add_request_handler(AddAnimeIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(FallbackIntentHandler())
