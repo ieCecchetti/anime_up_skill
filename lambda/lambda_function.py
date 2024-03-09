@@ -74,11 +74,11 @@ class TodayAnimeIntentHandler(AbstractRequestHandler):
         )
 
 
-class FollowableAnimeListIntentHandler(AbstractRequestHandler):
-    """Handler for FollowableAnimeListIntent."""
+class AllAnimeIntentHandler(AbstractRequestHandler):
+    """Handler for AllAnimeIntent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("FollowableAnimeListIntent")(handler_input)
+        return ask_utils.is_intent_name("AllAnimeIntent")(handler_input)
         
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
