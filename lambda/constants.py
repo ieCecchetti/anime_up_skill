@@ -72,21 +72,21 @@ HIRING_ANIME = [
     "the fire hunter": {
         "descr": "Al di fuori delle barriere magiche si trova un mondo invaso da bestie infuocate note come Demoni di Fuoco, e gli unici che possono proteggere l'umanità sono i Cacciatori di Fuoco. Nei boschi oscuri dove si aggirano le bestie, Toko, un giovane abitante del villaggio, viene salvato dall'attacco di uno di questi abili inseguitori, Koshi. Ma il loro incontro non è stato casuale e un nuovo destino ha inizio.",
         "genere": "Drama Fantasy Adventure",
-        "hiring_day": "Sat",
+        "hiring_day": "Sun",
         "season": "1",
         "last_ep": "21",
     },
     "shagiri la frontier": {
         "descr": "Rakuro Hizutome è un cacciatore di giochi brutti, che gioca con il soprannome di Sunraku fino a completarli al 100%. Dopo aver completato l'ennesimo titolo, per staccare un po' la spina si fa consigliare Shangri-La Frontier, un gioco VR full-dive di prima categoria con 30 milioni di giocatori registrati. Decide quindi di mettere alla prova tutte le abilità acquisite come esperto cacciatore di kusoge all'interno di un vero e proprio gioco.",
         "genere": "Thriller Fantasy Adventure",
-        "hiring_day": "Sat",
+        "hiring_day": "Sun",
         "season": "1",
         "last_ep": "21",
     },
     "theatre of darkness": {
         "descr": "",
         "genere": "Dark Thriller",
-        "hiring_day": "Sat",
+        "hiring_day": "Sun",
         "season": "1",
         "last_ep": "12",
     }
