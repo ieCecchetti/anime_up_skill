@@ -13,6 +13,7 @@ from ask_sdk_core.dispatch_components import AbstractExceptionHandler
 from ask_sdk_core.handler_input import HandlerInput
 
 from ask_sdk_model import Response
+import constants
 
 # from datetime import datetime
 
@@ -37,7 +38,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Ciao, mio piccolo nerd preferito, dimmi pure, che ti serve? Di 'anime up funzionalita' per la lista comandi"
+        speak_output = "Ciao, mio piccolo nerd preferito, dimmi pure, che ti serve? Di 'anime up comandi' per la lista comandi"
 
         return (
             handler_input.response_builder
