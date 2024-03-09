@@ -102,8 +102,6 @@ class AddAnimeIntentHandler(AbstractRequestHandler):
         
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        hiring_list = [anime['name'] for anime in constants.HIRING_ANIME]
-
         speak_output = f"Ok ho aggiunto l'anime alla tua lista"
         
         return (
