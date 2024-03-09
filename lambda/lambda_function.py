@@ -94,22 +94,22 @@ class FollowableAnimeListIntentHandler(AbstractRequestHandler):
         )
 
     
-class AddAnimeIntentHandler(AbstractRequestHandler):
-    """Handler for AddAnimeIntent."""
-    def can_handle(self, handler_input):
-        # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("AddAnimeIntent")(handler_input)
+# class AddAnimeIntentHandler(AbstractRequestHandler):
+#     """Handler for AddAnimeIntent."""
+#     def can_handle(self, handler_input):
+#         # type: (HandlerInput) -> bool
+#         return ask_utils.is_intent_name("AddAnimeIntent")(handler_input)
         
-    def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
-        speak_output = f"Ok ho aggiunto l'anime alla tua lista"
+#     def handle(self, handler_input):
+#         # type: (HandlerInput) -> Response
+#         speak_output = f"Ok ho aggiunto l'anime alla tua lista"
         
-        return (
-            handler_input.response_builder
-                .speak(speak_output)
-                .ask(constants.FALLBACK_ASK)
-                .response
-        )
+#         return (
+#             handler_input.response_builder
+#                 .speak(speak_output)
+#                 .ask(constants.FALLBACK_ASK)
+#                 .response
+#         )
 
 
 class HelpIntentHandler(AbstractRequestHandler):
