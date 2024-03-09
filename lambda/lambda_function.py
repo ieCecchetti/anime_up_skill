@@ -58,15 +58,15 @@ class TodayAnimeIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         current_day = get_current_day()
-        today_list = [ anime['name'] for anime in constants.HIRING_ANIME if anime['hiring_day'] == current_day ]
-        speak_output = f"Oggi, ci sono in programma le uscite di: {', '.join(today_list) or 'stograncasso'}"
+        # today_list = [ anime['name'] for anime in constants.HIRING_ANIME if anime['hiring_day'] == current_day ]
+        # speak_output = f"Oggi, ci sono in programma le uscite di: {', '.join(today_list) or 'stograncasso'}"
 
-        # speak_output = f"Oggi, ci sono in programma le uscite di: stograncasso"
+        speak_output = f"Oggi, {current_day}, ci sono in programma le uscite di: stograncasso"
         
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                .ask(constants.FALLBACK_ASK)
+                # .ask(constants.FALLBACK_ASK)
                 .response
         )
 
