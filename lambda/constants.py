@@ -37,7 +37,9 @@ HIRING_ANIME = [
         "genere": "Dark Fantasy",
         "hiring_day": "Thu",
         "season": "1",
-        "episode": "8"
+        "episode": "8",
+        "rating": 4.7,
+        "follower": 6700
     },
     {
         "name": "frieren - oltre la fine del viaggio",
@@ -45,7 +47,9 @@ HIRING_ANIME = [
         "genere": "Fantasy Drama Adventure",
         "hiring_day": "Fri",
         "season": "1",
-        "episode": "26"
+        "episode": "26",
+        "rating": 4.9,
+        "follower": 86600
     },
     {
         "name": "firefighters daigo ",
@@ -53,7 +57,9 @@ HIRING_ANIME = [
         "genere": "Drama Adventure",
         "hiring_day": "Sat",
         "season": "1",
-        "episode": "20"
+        "episode": "20",
+        "rating": 4.4,
+        "follower": 2400
     },
     {  
         "name": "blue exorcist",
