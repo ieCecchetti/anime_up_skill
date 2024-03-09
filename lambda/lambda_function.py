@@ -20,14 +20,14 @@ import constants
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-# def retrieve_day():
-#     # Get the current date and time
-#     current_datetime = datetime.now()
-#     # Get the day of the week as an integer (Monday is 0 and Sunday is 6)
-#     day_of_week = current_datetime.weekday()
-#     # Get the day of the week as a string (e.g., 'Mon', 'Tue', etc.)
-#     day_of_week_str = current_datetime.strftime('%a')
-#     return day_of_week_str
+def retrieve_day():
+    # Get the current date and time
+    current_datetime = datetime.now()
+    # Get the day of the week as an integer (Monday is 0 and Sunday is 6)
+    day_of_week = current_datetime.weekday()
+    # Get the day of the week as a string (e.g., 'Mon', 'Tue', etc.)
+    day_of_week_str = current_datetime.strftime('%a')
+    return day_of_week_str
 
 class LaunchRequestHandler(AbstractRequestHandler):
     """Handler for Skill Launch."""
@@ -55,11 +55,11 @@ class TodayAnimeIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        # current_day = get_current_day()
-        # today_list = [ name for name, info in constants.HIRING_ANIME if anime['hiring_day'] == current_day ]
-        # speak_output = f"Oggi, ci sono in programma le uscite di: {', '.join(today_list) or 'stograncasso'}"
+        current_day = get_current_day()
+        today_list = [ name for name, info in constants.HIRING_ANIME if anime['hiring_day'] == current_day ]
+        speak_output = f"Oggi, ci sono in programma le uscite di: {', '.join(today_list) or 'stograncasso'}"
 
-        speak_output = f"Oggi, ci sono in programma le uscite di: stograncasso"
+        # speak_output = f"Oggi, ci sono in programma le uscite di: stograncasso"
         
         return (
             handler_input.response_builder
