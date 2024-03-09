@@ -14,9 +14,6 @@ from ask_sdk_core.handler_input import HandlerInput
 
 from ask_sdk_model import Response
 
-from datetime import datetime
-import constants
-
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
@@ -39,15 +36,15 @@ class LaunchRequestHandler(AbstractRequestHandler):
                 .response
         )
 
-def get_current_day():
-    # Get the current date and time
-    current_datetime = datetime.now()
-    # Get the day of the week as an integer (Monday is 0 and Sunday is 6)
-    day_of_week = current_datetime.weekday()
-    # Get the day of the week as a string (e.g., 'Mon', 'Tue', etc.)
-    day_of_week_str = current_datetime.strftime('%a')
+# def get_current_day():
+#     # Get the current date and time
+#     current_datetime = datetime.now()
+#     # Get the day of the week as an integer (Monday is 0 and Sunday is 6)
+#     day_of_week = current_datetime.weekday()
+#     # Get the day of the week as a string (e.g., 'Mon', 'Tue', etc.)
+#     day_of_week_str = current_datetime.strftime('%a')
     
-    return day_of_week_str
+#     return day_of_week_str
 
 class TodayAnimeIntentHandler(AbstractRequestHandler):
     """Handler for Hello World Intent."""
