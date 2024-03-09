@@ -111,9 +111,22 @@ class AddAnimeIntentHandler(AbstractRequestHandler):
             # Extract the name associated with the slot
             anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value
             # the anime is in slot so its for sure an accepted one (but the slots can be different from the anime list constant)
-            best_match, score = find_best_match(anime_name, constants.HIRING_ANIME)
-            my_anime_list.append()
-            speak_output = f"Ok ho aggiunto {anime_name} l'anime alla tua lista."
+            hiring_list = [anime['name'] for anime in constants.HIRING_ANIME]
+            best_match = find_best_match(anime_name, hiring_list)
+            
+            anime_id = None
+            for anime in constants.HIRING_ANIME:
+                if anime['name'] == best_match:
+                    anime_id = anime['id']
+            
+            if not anime_id:
+                speak_output = f"{best_match} non corrisponde a nessun anime della lista."
+            else:
+                if anime_id in my_anime_list: 
+                    speak_output = f"{best_match} fa gia parte della tua lista!"
+                else:
+                    my_anime_list.append(anime_id)
+                    speak_output = f"Ok ho aggiunto {anime_name} alla tua lista."
             
         except KeyError:
             # Handle the case when "anime_name" slot is not present in the request
