@@ -117,7 +117,9 @@ HIRING_ANIME = [
         "genere": "Thriller Fantasy Adventure",
         "hiring_day": "Sun",
         "season": "1",
-        "episode": "21"
+        "episode": "21",
+        "rating": 4.9,
+        "follower": 58500
     },
     {
         "name": "theatre of darkness",
@@ -126,5 +128,7 @@ HIRING_ANIME = [
         "hiring_day": "Sun",
         "season": "1",
         "episode": "12"
+        "rating": 4.3,
+        "follower": 1600
     }
 ]
