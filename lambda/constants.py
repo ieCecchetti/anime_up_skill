@@ -3,12 +3,14 @@ HIRING_ANIME = {
         "descr": "Makoto Misumi era solo un adolescente medio che all'improvviso fu convocato in un altro mondo come un eroe. Ma la dea di questo mondo lo definì brutto e gli tolse il suo status di eroe costringendolo a rimanere li in disparte ai bordi di quel mondo. Cosi' lui decide di vivere la sua esperienza al 100%. Questa e' la storia.",
         "genere": "Isekai",
         "hiring_day": "Mon",
-        "last_ep": "8"
+        "season": "3",
+        "episode": "8"
     },
     "classroom of the elite": {
         "descr": "Ayanokoji Kiyotaka sta per cominciare il suo percorso scolastico presso il 'Liceo per la formazione di alto livello di Tokyo'. Agli studenti di tale scuola, alla fine dei corsi, è garantita l'ammissione al college scelto o verrà trovato lavoro. Si accorge subito che non e' un normale liceo e che la sua non e' una classe qualunque.",
         "genere": "Gakuen",
         "hiring_day": "Wed",
+        "season": "",
         "last_ep": "9",
     },
     "metallic rouge": {
@@ -29,17 +31,35 @@ HIRING_ANIME = {
         "hiring_day": "Fri",
         "last_ep": "26",
     },
+    "firefighters daigo ": {
+        "descr": "",
+        "genere": "Drama Adventure",
+        "hiring_day": "Sat",
+        "last_ep": "20",
+    },
+     "blue exorcist": {
+        "descr": "",
+        "genere": "Fantasy Adventure",
+        "hiring_day": "Sat",
+        "last_ep": "9",
+    },
     "mashle - magic and muscles": {
         "descr": "La storia si svolge in un mondo in cui esiste la magia e viene usata per qualunque occorrenza della vita quotidiana. Mash è un giovane che vive nascosto nella foresta e trascorre le giornate impegnandosi in potenti esercizi per il corpo. Non riesce a usare la magia ma vive comunque una vita pacifica con suo padre. Un giorno però la sua vita viene messa in pericolo; E poi guardatelo.",
         "genere": "Fantasy Adventure",
-        "hiring_day": "Fri",
+        "hiring_day": "Sat",
         "last_ep": "12",
     },
     "solo leveling": {
         "descr": "Dopo essere stato brutalmente massacrato dai mostri in un dungeon di alto rango, Jinwoo è tornato con il Sistema, un programma che solo lui poteva vedere, che lo sta facendo salire di livello in ogni modo. Ora, è ispirato a scoprire i segreti dietro i suoi poteri e il dungeon che li ha generati.",
         "genere": "Fantasy Adventure",
-        "hiring_day": "Fri",
+        "hiring_day": "Sat",
         "last_ep": "8",
+    },
+    "one piece": {
+        "descr": "Monkey D. Rufy vuole diventare il Re dei Pirati, e non si lascerà fermare da niente e da nessuno! La rotta è segnata, le acque insidiose della Rotta Maggiore lo aspettano, e lui non si fermerà finché non avrà trovato il più grande tesoro al mondo, il leggendario One Piece!",
+        "genere": "Fantasy Adventure",
+        "hiring_day": "Sun",
+        "last_ep": "629",
     }
     
 }
