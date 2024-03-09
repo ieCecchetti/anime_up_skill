@@ -7,7 +7,9 @@ HIRING_ANIME = [
         "genere": "Isekai",
         "hiring_day": "Mon",
         "season": "2",
-        "episode": "8"
+        "episode": "8",
+        "rating": 4.9,
+        "follower": 72200
     },
     {
         "name": "classroom of the elite",
@@ -16,7 +18,8 @@ HIRING_ANIME = [
         "hiring_day": "Wed",
         "season": "3",
         "episode": "9"
-        
+        "rating": 4.8,
+        "follower": 106700
     },
     {
         "name": "metallic rouge",
@@ -24,7 +27,9 @@ HIRING_ANIME = [
         "genere": "Cyber Punk",
         "hiring_day": "Wed",
         "season": "1",
-        "episode": "8"
+        "episode": "8",
+        "rating": 4.5,
+        "follower": 6600
     },
     {
         "name": "the witch and the beast",
