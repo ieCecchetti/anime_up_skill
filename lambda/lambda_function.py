@@ -13,6 +13,8 @@ from ask_sdk_core.dispatch_components import AbstractExceptionHandler
 from ask_sdk_core.handler_input import HandlerInput
 
 from ask_sdk_model import Response
+from datetime import datetime
+import constants
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -36,8 +38,17 @@ class LaunchRequestHandler(AbstractRequestHandler):
                 .response
         )
 
+def get_current_day():
+    # Get the current date and time
+    current_datetime = datetime.now()
+    # Get the day of the week as an integer (Monday is 0 and Sunday is 6)
+    day_of_week = current_datetime.weekday()
+    # Get the day of the week as a string (e.g., 'Mon', 'Tue', etc.)
+    day_of_week_str = current_datetime.strftime('%a')
+    
+    return day_of_week_str
 
-class HelloWorldIntentHandler(AbstractRequestHandler):
+class TodayAnimeIntentHandler(AbstractRequestHandler):
     """Handler for Hello World Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
@@ -45,7 +56,9 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hello World!"
+        current_day = get_current_day()
+        today_list = [ name for name, info in constants.HIRING_ANIME if anime['hiring_day'] == current_day ]
+        speak_output = f"Oggi, ci sono in programma le uscite di: {', '.join(today_list) or 'stograncasso'}"
 
         return (
             handler_input.response_builder
@@ -171,7 +184,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 sb = SkillBuilder()
 
 sb.add_request_handler(LaunchRequestHandler())
-sb.add_request_handler(HelloWorldIntentHandler())
+sb.add_request_handler(TodayAnimeIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(FallbackIntentHandler())
