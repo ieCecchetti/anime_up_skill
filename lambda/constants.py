@@ -67,7 +67,9 @@ HIRING_ANIME = [
         "genere": "Fantasy Adventure",
         "hiring_day": "Sat",
         "season": "3",
-        "episode": "9"
+        "episode": "9",
+        "rating": 4.7,
+        "follower": 26700
     },
     {
         "name": "mashle - magic and muscles",
@@ -75,7 +77,9 @@ HIRING_ANIME = [
         "genere": "Fantasy Adventure",
         "hiring_day": "Sat",
         "season": "2",
-        "episode": "12"
+        "episode": "12",
+        "rating": 4.8,
+        "follower": 101700
     },
     {
         "name": "solo leveling",
@@ -83,7 +87,9 @@ HIRING_ANIME = [
         "genere": "Fantasy Adventure",
         "hiring_day": "Sat",
         "season": "1",
-        "episode": "8"
+        "episode": "8",
+        "rating": 4.9,
+        "follower": 174300
     },
     {
         "name": "one piece",
@@ -91,7 +97,9 @@ HIRING_ANIME = [
         "genere": "Fantasy Adventure",
         "hiring_day": "Sun",
         "season": "1",
-        "episode": "629"
+        "episode": "629",
+        "rating": 4.9,
+        "follower": 416500
     },
     {
         "name": "the fire hunter",
@@ -99,7 +107,9 @@ HIRING_ANIME = [
         "genere": "Drama Fantasy Adventure",
         "hiring_day": "Sun",
         "season": "1",
-        "episode": "21"
+        "episode": "21",
+        "rating": 4.4,
+        "follower": 2300
     },
     {
         "name": "shagiri la frontier",
