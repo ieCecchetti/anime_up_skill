@@ -16,6 +16,7 @@ from ask_sdk_model import Response
 
 from datetime import datetime
 import constants
+from fuzzywuzzy import process
 
 # from datetime import datetime
 
@@ -100,10 +101,18 @@ class AddAnimeIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("AddAnimeIntent")(handler_input)
         
+    def find_best_match(target_name, list_of_names):
+        best_match, score = process.extractOne(target_name, list_of_names)
+        return best_match
+        
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         try:
+            # Extract the name associated with the slot
             anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value
+            # the anime is in slot so its for sure an accepted one (but the slots can be different from the anime list constant)
+            best_match, score = find_best_match(anime_name, constants.HIRING_ANIME)
+            my_anime_list.append()
             speak_output = f"Ok ho aggiunto {anime_name} l'anime alla tua lista."
             
         except KeyError:
