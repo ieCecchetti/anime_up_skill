@@ -108,7 +108,7 @@ class InfoOnAnimeIntentHandler(AbstractRequestHandler):
         selected_anime = utils.get_closer_name(anime_name, anime_list)
         anime_info = utils.get_info_from_anime(selected_anime)
         if anime_info:
-            speak_output = f"Ok, riguardo {anime_name}: {constants.AIRING_ANIME}"
+            speak_output = f"Ok, riguardo {anime_name}: {anime_info['descr']}"
         else:
             speak_output = f"Scusa, non ho trovato nessuna informazione su {anime_name}."
         
