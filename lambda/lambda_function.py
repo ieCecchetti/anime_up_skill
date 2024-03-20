@@ -128,7 +128,7 @@ class WhenOutAnimeIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         # get the handler_input["anime_name"] param
         anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value
-        if anime_name in constants.AIRING_ANIME[anime_name]:
+        if anime_name in [anime["name"] for anime in constants.AIRING_ANIME]:
             anime_info = constants.AIRING_ANIME[anime_name]
             day_of_week_short = anime_info["airing_day"]
             # day_of_the_week = constants.DAY_OF_THE_WEEK[day_of_week_short]
