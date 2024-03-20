@@ -105,8 +105,8 @@ class InfoOnAnimeIntentHandler(AbstractRequestHandler):
         # get the handler_input["anime_name"] param
         anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value
         anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
-        selected_anime = utils.calculate_distance(anime_name, anime_list)[:3]
-        speak_output = f"Forse intendevi {' oppure '.join(selected_anime)}"
+        selected_anime = utils.get_closer_name(anime_name, anime_list)
+        speak_output = f"Ok, riguardo {anime_name}: {constants.AIRING_ANIME[selected_anime]}"
         
         return (
             handler_input.response_builder
