@@ -131,7 +131,8 @@ class WhenOutAnimeIntentHandler(AbstractRequestHandler):
         if anime_name in constants.AIRING_ANIME[anime_name]:
             anime_info = constants.AIRING_ANIME[anime_name]
             day_of_week_short = anime_info["airing_day"]
-            speak_output = f"{anime_name} esce tutti i {constants.DAY_OF_THE_WEEK[day_of_week_short]}"
+            # day_of_the_week = constants.DAY_OF_THE_WEEK[day_of_week_short]
+            speak_output = f"{anime_name} esce tutti i {day_of_week_short}"
         else:
             speak_output = f"Scusa ma non ho trovato nessuna informazione associata a: {anime_name}. Prova a scandire meglio il nome."
         
