@@ -104,14 +104,9 @@ class InfoOnAnimeIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         # get the handler_input["anime_name"] param
         anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value
-        
-        if anime_name in [anime["name"] for anime in constants.AIRING_ANIME]:
-            anime_info = constants.AIRING_ANIME[anime_name]
-            day_of_week_short = anime_info["airing_day"]
-            # day_of_the_week = constants.DAY_OF_THE_WEEK[day_of_week_short]
-            speak_output = f"{anime_name} esce tutti i {day_of_week_short}"
-        else:
-            speak_output = f"Scusa ma non ho trovato nessuna informazione associata a: {anime_name}. Prova a scandire meglio il nome."
+        anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
+        selected_anime = utils.calculate_distance(anime_name, anime_list)[:3]
+        speak_output = f"Forse intendevi {'o '.join(selected_anime)}"
         
         return (
             handler_input.response_builder
