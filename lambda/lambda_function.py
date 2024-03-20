@@ -84,7 +84,7 @@ class AllAnimeIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         hiring_list = [anime['name'] for anime in constants.HIRING_ANIME]
 
-        speak_output = f"Al momento i disponibili sono: {', '.join(hiring_list)}"
+        speak_output = f"Al momento gli anime di cui ho informazioni sono: {', '.join(hiring_list)}"
         
         return (
             handler_input.response_builder
