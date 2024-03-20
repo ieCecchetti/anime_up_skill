@@ -1,5 +1,13 @@
 FALLBACK_ASK = "eh mo, ti serve altro?"
-
+DAY_OF_THE_WEEK = {
+    "Mon": "Lunedì",
+    "Tue": "Martedì",
+    "Wed": "Mercoledì",
+    "Thu": "Giovedì",
+    "Fri": "Venerdì",
+    "Sat": "Sabato",
+    "Sun": "Domenica"
+}
 HIRING_ANIME = [
     {
         "id": 1,
