@@ -16,6 +16,7 @@ from ask_sdk_model import Response
 
 from datetime import datetime
 import constants
+import utils
 
 # from datetime import datetime
 
@@ -85,6 +86,32 @@ class AllAnimeIntentHandler(AbstractRequestHandler):
         airing_list = [anime['name'] for anime in constants.AIRING_ANIME]
 
         speak_output = f"Al momento gli anime di cui ho informazioni sono: {', '.join(airing_list)}"
+        
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .ask(constants.FALLBACK_ASK)
+                .response
+        )
+
+class InfoOnAnimeIntentHandler(AbstractRequestHandler):
+    """Handler for AllAnimeIntent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("InfoOnAnimeIntent")(handler_input)
+        
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        # get the handler_input["anime_name"] param
+        anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value
+        
+        if anime_name in [anime["name"] for anime in constants.AIRING_ANIME]:
+            anime_info = constants.AIRING_ANIME[anime_name]
+            day_of_week_short = anime_info["airing_day"]
+            # day_of_the_week = constants.DAY_OF_THE_WEEK[day_of_week_short]
+            speak_output = f"{anime_name} esce tutti i {day_of_week_short}"
+        else:
+            speak_output = f"Scusa ma non ho trovato nessuna informazione associata a: {anime_name}. Prova a scandire meglio il nome."
         
         return (
             handler_input.response_builder
@@ -262,6 +289,7 @@ sb = SkillBuilder()
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(TodayAnimeIntentHandler())
 sb.add_request_handler(AllAnimeIntentHandler())
+sb.add_request_handler(InfoOnAnimeIntentHandler())
 sb.add_request_handler(LastEpisodeIntentHandler())
 sb.add_request_handler(WhenOutAnimeIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
