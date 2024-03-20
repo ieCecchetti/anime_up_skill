@@ -61,3 +61,7 @@ def calculate_distance(actual, array_values):
     #  return the sorted array from the closest distance string to the farest one
     return sorted_values
     
+def get_closer(actual, array_values):
+    results = calculate_distance(actual, array_values)
+    return results[0]
+    
