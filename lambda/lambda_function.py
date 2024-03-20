@@ -60,7 +60,7 @@ class TodayAnimeIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         current_day = retrieve_day()
-        today_list = [anime['name'] for anime in constants.HIRING_ANIME if anime['hiring_day'] == current_day]
+        today_list = [anime['name'] for anime in constants.AIRING_ANIME if anime['airing_day'] == current_day]
         today_list_str = ', '.join(today_list) or 'stograncasso'
         speak_output = f"Oggi, ci sono in programma le uscite di: {today_list_str}"
 
@@ -82,9 +82,9 @@ class AllAnimeIntentHandler(AbstractRequestHandler):
         
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        hiring_list = [anime['name'] for anime in constants.HIRING_ANIME]
+        airing_list = [anime['name'] for anime in constants.AIRING_ANIME]
 
-        speak_output = f"Al momento gli anime di cui ho informazioni sono: {', '.join(hiring_list)}"
+        speak_output = f"Al momento gli anime di cui ho informazioni sono: {', '.join(airing_list)}"
         
         return (
             handler_input.response_builder
@@ -104,8 +104,8 @@ class LastEpisodeIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         # get the handler_input["anime_name"] param
         anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value
-        if anime_name in constants.HIRING_ANIME[anime_name]:
-            anime_info = constants.HIRING_ANIME[anime_name]
+        if anime_name in constants.AIRING_ANIME[anime_name]:
+            anime_info = constants.AIRING_ANIME[anime_name]
             speak_output = f"L'ultimo episodio di {anime_name} e' {anime_info['episode']}"
         else:
             speak_output = f"Scusa ma non ho trovato nessuna informazione associata a: {anime_name}. Prova a scandire meglio il nome."
@@ -128,9 +128,10 @@ class WhenOutAnimeIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         # get the handler_input["anime_name"] param
         anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value
-        if anime_name in constants.HIRING_ANIME[anime_name]:
-            anime_info = constants.HIRING_ANIME[anime_name]
-            speak_output = f"{anime_name} esce tutti i "
+        if anime_name in constants.AIRING_ANIME[anime_name]:
+            anime_info = constants.AIRING_ANIME[anime_name]
+            day_of_week_short = anime_info["airing_day"]
+            speak_output = f"{anime_name} esce tutti i {constants.DAY_OF_THE_WEEK[day_of_week_short]}"
         else:
             speak_output = f"Scusa ma non ho trovato nessuna informazione associata a: {anime_name}. Prova a scandire meglio il nome."
         
