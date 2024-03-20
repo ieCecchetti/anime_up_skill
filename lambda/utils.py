@@ -2,6 +2,7 @@ import logging
 import os
 import boto3
 from botocore.exceptions import ClientError
+import constants
 
 
 def create_presigned_url(object_name):
@@ -60,8 +61,12 @@ def calculate_distance(actual, array_values):
     sorted_scores, sorted_values = zip(*combined)
     #  return the sorted array from the closest distance string to the farest one
     return sorted_values
-    
-def get_closer(actual, array_values):
+
+def get_closer_name(actual, array_values):
+    results = calculate_distance(actual, array_values)
+    return results[0]
+
+def get_info_from_anime(name):
     results = calculate_distance(actual, array_values)
     return results[0]
     
