@@ -72,3 +72,10 @@ def get_info_from_anime(serched_anime):
             return anime
     return None
     
+def get_anime_feed(rating, follower):
+    max_rating = max([anime['rating'] for anime in constants.AIRING_ANIME])
+    max_follower = max([anime['follower'] for anime in constants.AIRING_ANIME])
+    
+    
+    
+    
