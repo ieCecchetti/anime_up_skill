@@ -243,7 +243,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
         # type: (HandlerInput, Exception) -> Response
         logger.error(exception, exc_info=True)
 
-        speak_output = "Sorry, I had trouble doing what you asked. Please try again."
+        speak_output = f"Sorry, I had trouble doing what you asked. Please try again. Erro: {repr(exception)}"
 
         return (
             handler_input.response_builder
