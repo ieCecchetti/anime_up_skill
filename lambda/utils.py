@@ -51,7 +51,7 @@ def levenshtein_distance(str1, str2):
 
 def calculate_distance(actual, array_values):
     # calculate the distance score for every array value wtr the actual string
-    score = [levenshtein_distance(actual, value) for value in array_values]
+    scores = [levenshtein_distance(actual, value) for value in array_values]
     # Zip the arrays together
     combined = list(zip(scores, values))
     # Sort the zipped array based on scores (in descending order)
