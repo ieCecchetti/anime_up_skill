@@ -16,7 +16,6 @@ from ask_sdk_model import Response
 
 from datetime import datetime
 import constants
-from fuzzywuzzy import process
 
 # from datetime import datetime
 
@@ -86,47 +85,6 @@ class AllAnimeIntentHandler(AbstractRequestHandler):
         hiring_list = [anime['name'] for anime in constants.HIRING_ANIME]
 
         speak_output = f"Al momento i disponibili sono: {', '.join(hiring_list)}"
-        
-        return (
-            handler_input.response_builder
-                .speak(speak_output)
-                .ask(constants.FALLBACK_ASK)
-                .response
-        )
-
-
-class AddAnimeIntentHandler(AbstractRequestHandler):
-    """Handler for AddAnimeIntent."""
-    def can_handle(self, handler_input):
-        # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("AddAnimeIntent")(handler_input)
-        
-    def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
-        try:
-            # Extract the name associated with the slot
-            anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value
-            # the anime is in slot so its for sure an accepted one (but the slots can be different from the anime list constant)
-            hiring_list = [anime['name'] for anime in constants.HIRING_ANIME]
-            best_match, score = process.extractOne(anime_name, hiring_list)
-            
-            anime_id = None
-            for anime in constants.HIRING_ANIME:
-                if anime['name'] == best_match:
-                    anime_id = anime['id']
-            
-            if not anime_id:
-                speak_output = f"{best_match} non corrisponde a nessun anime della lista."
-            else:
-                if anime_id in my_anime_list: 
-                    speak_output = f"{best_match} fa gia parte della tua lista!"
-                else:
-                    my_anime_list.append(anime_id)
-                    speak_output = f"Ok ho aggiunto {anime_name} alla tua lista."
-            
-        except KeyError:
-            # Handle the case when "anime_name" slot is not present in the request
-            speech_text = "Scusa non ho capito il nome dell'anime. Puoi ripeterlo?"
         
         return (
             handler_input.response_builder
