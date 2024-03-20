@@ -102,9 +102,13 @@ class LastEpisodeIntentHandler(AbstractRequestHandler):
         
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        hiring_list = [anime['name'] for anime in constants.HIRING_ANIME]
-
-        speak_output = f"Al momento gli anime di cui ho informazioni sono: {', '.join(hiring_list)}"
+        # get the handler_input["anime_name"] param
+        anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value
+        if anime_name in constants.HIRING_ANIME[anime_name]:
+            anime_info = constants.HIRING_ANIME[anime_name]
+            speak_output = f"Allora, vediamo, l'ultimo episodio di {anime_name} e' {anime_info['episode']}"
+        else:
+            speak_output = f"Scusa ma non ho trovato nessuna informazione associata a: {anime_name}. Prova a richiedermelo."
         
         return (
             handler_input.response_builder
