@@ -94,6 +94,26 @@ class AllAnimeIntentHandler(AbstractRequestHandler):
         )
 
 
+class LastEpisodeIntentHandler(AbstractRequestHandler):
+    """Handler for AllAnimeIntent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("AllAnimeIntent")(handler_input)
+        
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        hiring_list = [anime['name'] for anime in constants.HIRING_ANIME]
+
+        speak_output = f"Al momento gli anime di cui ho informazioni sono: {', '.join(hiring_list)}"
+        
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .ask(constants.FALLBACK_ASK)
+                .response
+        )
+
+
 class HelpIntentHandler(AbstractRequestHandler):
     """Handler for Help Intent."""
     def can_handle(self, handler_input):
@@ -212,6 +232,7 @@ sb = SkillBuilder()
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(TodayAnimeIntentHandler())
 sb.add_request_handler(AllAnimeIntentHandler())
+sb.add_request_handler(LastEpisodeIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(FallbackIntentHandler())
