@@ -106,7 +106,7 @@ class LastEpisodeIntentHandler(AbstractRequestHandler):
         anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value
         if anime_name in constants.HIRING_ANIME[anime_name]:
             anime_info = constants.HIRING_ANIME[anime_name]
-            speak_output = f"Allora, vediamo, l'ultimo episodio di {anime_name} e' {anime_info['episode']}"
+            speak_output = f"L'ultimo episodio di {anime_name} e' {anime_info['episode']}"
         else:
             speak_output = f"Scusa ma non ho trovato nessuna informazione associata a: {anime_name}. Prova a richiedermelo."
         
