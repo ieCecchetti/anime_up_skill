@@ -107,8 +107,9 @@ class InfoOnAnimeIntentHandler(AbstractRequestHandler):
         anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
         selected_anime = utils.get_closer_name(anime_name, anime_list)
         anime_info = utils.get_info_from_anime(selected_anime)
+        day_of_week = constants.DAY_OF_THE_WEEK[anime_info['airing_day']]
         if anime_info:
-            speak_output = f"Ok, riguardo {anime_name}: {anime_info['descr']}"
+            speak_output = f"Ok. {anime_name} e' un anime {anime_info['genere']}. Ha {anime_info['season']} stagioni e attualmente siamo al {anime_info['episode']} episodio. Esce di {day_of_week}. La trama e': {anime_info['descr']}"
         else:
             speak_output = f"Scusa, non ho trovato nessuna informazione su {anime_name}."
         
