@@ -8,7 +8,7 @@ DAY_OF_THE_WEEK = {
     "Sat": "Sabato",
     "Sun": "Domenica"
 }
-HIRING_ANIME = [
+AIRING_ANIME = [
     {
         "id": 1,
         "name": "tsukimichi - moonlit fantasy",
