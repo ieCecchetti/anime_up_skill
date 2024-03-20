@@ -66,7 +66,9 @@ def get_closer_name(actual, array_values):
     results = calculate_distance(actual, array_values)
     return results[0]
 
-def get_info_from_anime(name):
-    results = calculate_distance(actual, array_values)
-    return results[0]
+def get_info_from_anime(serched_anime):
+    for anime in constants.AIRING_ANIME:
+        if anime["name"] == serched_anime:
+            return anime
+    return None
     
