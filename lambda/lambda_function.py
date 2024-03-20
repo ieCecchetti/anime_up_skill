@@ -94,6 +94,7 @@ class AllAnimeIntentHandler(AbstractRequestHandler):
                 .response
         )
 
+# TODO: add trama here
 class InfoOnAnimeIntentHandler(AbstractRequestHandler):
     """Handler for AllAnimeIntent."""
     def can_handle(self, handler_input):
@@ -109,7 +110,7 @@ class InfoOnAnimeIntentHandler(AbstractRequestHandler):
         anime_info = utils.get_info_from_anime(selected_anime)
         day_of_week = constants.DAY_OF_THE_WEEK[anime_info['airing_day']]
         if anime_info:
-            speak_output = f"Ok. {anime_name} e' un anime {anime_info['genere']}. Ha {anime_info['season']} stagioni e attualmente siamo al {anime_info['episode']} episodio. Esce di {day_of_week}. La trama e': {anime_info['descr']}"
+            speak_output = f"{anime_name} o con il suo nome completo {anime_info['name']} e' un anime {anime_info['genere']}. Ha {anime_info['season']} stagioni e attualmente siamo al {anime_info['episode']} episodio. Esce di {day_of_week}. Attualmente ha un voto di {anime_info['rating']} con {anime_info['follower']} followers"
         else:
             speak_output = f"Scusa, non ho trovato nessuna informazione su {anime_name}."
         
