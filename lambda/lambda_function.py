@@ -194,9 +194,6 @@ class ConfirmIntentHandler(AbstractRequestHandler):
         if state == 'info_anime':
             # Handle confirmation in shopping context
             return handler_input.response_builder.speak(f"AAAAAAAH hai risposto: {answer} quando parlavamo di {state}").response
-        elif state == 'other_state':
-            # Handle confirmation in another context
-            return handler_input.response_builder.speak("Confirmed!").response
         else:
             return handler_input.response_builder.speak("I'm not sure what you're confirming.").response
 
