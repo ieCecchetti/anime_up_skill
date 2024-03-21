@@ -72,6 +72,7 @@ def get_closer_name(actual, array_values, size=0):
     if size>0:
         return results[:size]
     else:
+        # return only if the name is real, cant be another complitely different one.
         return results[0] if results[0]>0.7 else None
 
 
