@@ -102,10 +102,12 @@ class InfoOnAnimeIntentHandler(AbstractRequestHandler):
         
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        # get the handler_input["anime_name"] param
-        anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value
         # Initialize session attributes
         session_attr = handler_input.attributes_manager.session_attributes
+        # get the handler_input["anime_name"] param
+        anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value or session_attr.get('selected_anime', None)
+        if not anime_name:
+            speak_output = "Non ho capito di che anime stiamo parlando."
         session_attr['state'] = 'info_anime'
         # store the anime name on the state for future operations
         session_attr['selected_anime'] = anime_name
