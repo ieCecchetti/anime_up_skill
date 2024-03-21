@@ -176,6 +176,8 @@ class LastEpisodeIntentHandler(AbstractRequestHandler):
         if not anime_name:
             speak_output = "Non ho capito di che anime stiamo parlando!"
         else:
+            # store the anime name on the state for future operations
+            session_attr['selected_anime'] = anime_name
             anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
             selected_anime = utils.get_closer_name(anime_name, anime_list)
             anime_info = utils.get_info_from_anime(selected_anime)
@@ -208,6 +210,8 @@ class WhenOutAnimeIntentHandler(AbstractRequestHandler):
         if not anime_name:
             speak_output = "Non ho capito di che anime stiamo parlando!"
         else:
+            # store the anime name on the state for future operations
+            session_attr['selected_anime'] = anime_name
             anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
             selected_anime = utils.get_closer_name(anime_name, anime_list)
             anime_info = utils.get_info_from_anime(selected_anime)
