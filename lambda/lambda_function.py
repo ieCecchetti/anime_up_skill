@@ -73,7 +73,27 @@ class SelectAnimeIntentHandler(AbstractRequestHandler):
                 .speak(speak_output)
                 .response
         )
-    
+
+
+class WhichAnimeSelectedIntentHandler(AbstractRequestHandler):
+    """Handler for SelectAnimeIntent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("WhichAnimeSelectedIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        # Initialize session attributes
+        session_attr = handler_input.attributes_manager.session_attributes
+        # store the anime name on the state for future operations
+        anime_name = session_attr['selected_anime']
+        speak_output = f"TTapposto bro? Stiamo parlando di {anime_name}"
+        
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .response
+        )
 
 class TodayAnimeIntentHandler(AbstractRequestHandler):
     """Handler for TodayAnimeIntent."""
