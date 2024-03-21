@@ -23,9 +23,9 @@ import utils
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-def retrieve_day():
+def retrieve_day(plus_days=0):
     # Get the current date and time
-    current_datetime = datetime.now()
+    current_datetime = datetime.now() + timedelta(days=plus_days)
     # Get the day of the week as an integer (Monday is 0 and Sunday is 6)
     day_of_week = current_datetime.weekday()
     # Get the day of the week as a string (e.g., 'Mon', 'Tue', etc.)
@@ -134,10 +134,17 @@ class WhatsAnimeInIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        current_day = retrieve_day()
-        today_list = [anime['name'] for anime in constants.AIRING_ANIME if anime['airing_day'] == current_day]
-        today_list_str = ', '.join(today_list) or 'stograncasso'
-        speak_output = f"Oggi, ci sono in programma le uscite di: {today_list_str}"
+        # Initialize session attributes
+        session_attr = handler_input.attributes_manager.session_attributes
+        # get the handler_input["dates_word"] param: ex `domani`
+        anime_name = handler_input.request_envelope.request.intent.slots["dates_word"].value
+        if not anime_name:
+            speak_output = "Non ho capito di che giorno stai parlando!"
+        else:
+            current_day = retrieve_day()
+            today_list = [anime['name'] for anime in constants.AIRING_ANIME if anime['airing_day'] == current_day]
+            today_list_str = ', '.join(today_list) or 'stograncasso'
+            speak_output = f"Oggi, ci sono in programma le uscite di: {today_list_str}"
 
         # speak_output = f"Oggi, {current_day}, ci sono in programma le uscite di: stograncasso"
         
