@@ -8,6 +8,14 @@ DAY_OF_THE_WEEK = {
     "Sat": "Sabato",
     "Sun": "Domenica"
 }
+DAY_OF_THE_WEEK = {
+    "oggi": 0,
+    "domani": 1,
+    "dopo domani": 2,
+    "dopodomani": 2, 
+    "ieri": -1,
+    "l'altro ieri": -2,
+}
 AIRING_ANIME = [
     {
         "id": 1,
