@@ -67,8 +67,6 @@ class SelectAnimeIntentHandler(AbstractRequestHandler):
         # store the anime name on the state for future operations
         session_attr['selected_anime'] = anime_name
         speak_output = f"Ok, parliamo di {anime_name}"
-
-        # speak_output = f"Oggi, {current_day}, ci sono in programma le uscite di: stograncasso"
         
         return (
             handler_input.response_builder
