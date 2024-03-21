@@ -91,8 +91,8 @@ class WhichAnimeSelectedIntentHandler(AbstractRequestHandler):
         if anime_name:
             # get the anime info
             anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
-            selected_anime = utils.get_closer_name(anime_name, anime_list, 3)
-            speak_output = f"Stiamo parlando di uno di questi anime: {' , '.join(selected_anime)}"
+            selected_anime = utils.get_closer_name(anime_name, anime_list)
+            speak_output = f"Stiamo parlando di: {selected_anime}"
         else:
             speak_output = f"Ah, non lo so! Non me lo hai ancora specificato."
         
