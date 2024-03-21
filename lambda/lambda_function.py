@@ -248,9 +248,8 @@ class AskFeedbackIntentHandler(AbstractRequestHandler):
             selected_anime = utils.get_closer_name(anime_name, anime_list)
             anime_info = utils.get_info_from_anime(selected_anime)
             if anime_info:
-                speak_output = (
-                    f"Il mio personale commento e': {utils.get_anime_feed(anime_info['rating'], anime_info['follower'])}"
-                )
+                speak_output = f"Il mio personale commento e': {utils.get_anime_feed(anime_info['rating'], anime_info['follower'])}"
+                
             else:
                 speak_output = f"Scusa, non ho trovato nessuna informazione su {anime_name}."
         
