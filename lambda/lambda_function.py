@@ -50,7 +50,29 @@ class LaunchRequestHandler(AbstractRequestHandler):
                 .ask(speak_output)
                 .response
         )
+
+
+class SelectAnimeIntentHandler(AbstractRequestHandler):
+    """Handler for SelectAnimeIntent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("SelectAnimeIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        
+        speak_output = f"Ok, ci sono in programma le uscite di: {today_list_str}"
+
+        # speak_output = f"Oggi, {current_day}, ci sono in programma le uscite di: stograncasso"
+        
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .ask(constants.FALLBACK_ASK)
+                .response
+        )
     
+
 class TodayAnimeIntentHandler(AbstractRequestHandler):
     """Handler for TodayAnimeIntent."""
     def can_handle(self, handler_input):
@@ -329,6 +351,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 sb = SkillBuilder()
 
 sb.add_request_handler(LaunchRequestHandler())
+sb.add_request_handler(SelectAnimeIntentHandler())
 sb.add_request_handler(TodayAnimeIntentHandler())
 sb.add_request_handler(AllAnimeIntentHandler())
 sb.add_request_handler(InfoOnAnimeIntentHandler())
