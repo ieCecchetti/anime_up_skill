@@ -95,6 +95,7 @@ class WhichAnimeSelectedIntentHandler(AbstractRequestHandler):
                 .response
         )
 
+
 class TodayAnimeIntentHandler(AbstractRequestHandler):
     """Handler for TodayAnimeIntent."""
     def can_handle(self, handler_input):
