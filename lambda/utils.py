@@ -65,7 +65,10 @@ def calculate_distance(actual, array_values):
 
 def get_closer_name(actual, array_values, size=0):
     results = calculate_distance(actual, array_values)
-    return results[size]
+    if size>0:
+        return results[:size]
+    else:
+        return results[0]
 
 
 def get_info_from_anime(serched_anime):
