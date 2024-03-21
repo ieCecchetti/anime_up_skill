@@ -90,7 +90,7 @@ class WhichAnimeSelectedIntentHandler(AbstractRequestHandler):
         if anime_name:
             speak_output = f"TTapposto bro? Stiamo parlando di {anime_name}"
         else:
-            speak_output = f"Ah non so, non me lo hai ancora specificato."
+            speak_output = f"Ah, non lo so! Non me lo hai ancora specificato."
         
         return (
             handler_input.response_builder
