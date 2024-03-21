@@ -55,8 +55,8 @@ def calculate_distance(actual, array_values):
     scores = [levenshtein_distance(actual, value) for value in array_values]
     # Zip the arrays together
     combined = list(zip(scores, array_values))
-    # Sort the zipped array based on scores (in descending order)
-    combined.sort(reverse=True)
+    # Sort the zipped array based on scores (in ascending order - from the closer(0))
+    combined.sort(reverse=False)
     # Unzip the sorted array
     sorted_scores, sorted_values = zip(*combined)
     #  return the sorted array from the closest distance string to the farest one
