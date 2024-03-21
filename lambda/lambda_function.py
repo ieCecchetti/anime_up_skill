@@ -167,11 +167,13 @@ class WhenOutAnimeIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         # get the handler_input["anime_name"] param
         anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value
-        if anime_name in [anime["name"] for anime in constants.AIRING_ANIME]:
-            anime_info = constants.AIRING_ANIME[anime_name]
-            day_of_week_short = anime_info["airing_day"]
+        anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
+        selected_anime = utils.get_closer_name(anime_name, anime_list)
+        anime_info = utils.get_info_from_anime(selected_anime)
+        day_of_week = constants.DAY_OF_THE_WEEK[anime_info['airing_day']]
+        if anime_info:
             # day_of_the_week = constants.DAY_OF_THE_WEEK[day_of_week_short]
-            speak_output = f"{anime_name} esce tutti i {day_of_week_short}"
+            speak_output = f"{anime_name} esce tutti i {day_of_week}"
         else:
             speak_output = f"Scusa ma non ho trovato nessuna informazione associata a: {anime_name}. Prova a scandire meglio il nome."
         
@@ -181,6 +183,7 @@ class WhenOutAnimeIntentHandler(AbstractRequestHandler):
                 .ask(constants.FALLBACK_ASK)
                 .response
         )
+
 
 class ConfirmIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
