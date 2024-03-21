@@ -17,6 +17,7 @@ from ask_sdk_model import Response
 from datetime import datetime
 import constants
 import utils
+from ask_sdk_model.ui import SimpleCard
 
 # from datetime import datetime
 
@@ -116,13 +117,15 @@ class InfoOnAnimeIntentHandler(AbstractRequestHandler):
                 f"Esce di {day_of_week}. Attualmente ha un voto di {anime_info['rating']} con {anime_info['follower']} followers. "
                 f"Il mio personale commento e': {utils.get_anime_feed(anime_info['rating'], anime_info['follower'])}"
             )
+            reprompt = "Vuoi conoscere anche la trama dell'anime?"
+            handler_input.response_builder.with_simple_card(selected_anime, speak_output)
         else:
             speak_output = f"Scusa, non ho trovato nessuna informazione su {anime_name}."
         
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                .ask(constants.FALLBACK_ASK)
+                .ask(reprompt)
                 .response
         )
 
