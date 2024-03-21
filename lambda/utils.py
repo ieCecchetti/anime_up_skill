@@ -63,14 +63,13 @@ def calculate_distance(actual, array_values):
     combined.sort(reverse=False)
     # Unzip the sorted array into: sorted_scores, sorted_values
     sorted_scores, sorted_values = zip(*combined)
-    
     return sorted_values, sorted_scores
 
 
 def get_closer_name(actual, array_values, treshold=0.7):
-    scores, value = calculate_distance(actual, array_values)
+    values, scores = calculate_distance(actual, array_values)
     # return only if the name is real, cant be another complitely different one.
-    return results[0] if scores[0]>treshold else None
+    return values[0] if scores[0]>treshold else None
 
 
 def get_info_from_anime(serched_anime):
