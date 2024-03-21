@@ -145,7 +145,7 @@ class WhatsAnimeInIntentHandler(AbstractRequestHandler):
             current_day = retrieve_day(days_to_add)
             today_list = [anime['name'] for anime in constants.AIRING_ANIME if anime['airing_day'] == current_day]
             today_list_str = ', '.join(today_list) or 'stograncasso'
-            speak_output = f"Oggi, ci sono in programma le uscite di: {today_list_str}"
+            speak_output = f"{date_word}, ci sono in programma le uscite di: {today_list_str}"
 
         # speak_output = f"Oggi, {current_day}, ci sono in programma le uscite di: stograncasso"
         
