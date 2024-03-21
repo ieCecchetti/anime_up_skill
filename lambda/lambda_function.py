@@ -17,7 +17,6 @@ from ask_sdk_model import Response
 from datetime import datetime
 import constants
 import utils
-from ask_sdk_model.ui import SimpleCard
 
 # from datetime import datetime
 
