@@ -61,19 +61,19 @@ def calculate_distance(actual, array_values):
     combined = list(zip(scores, array_values))
     # Sort the zipped array based on scores (in ascending order - from the closer(0))
     combined.sort(reverse=False)
-    # Unzip the sorted array
+    # Unzip the sorted array into: sorted_scores, sorted_values
     sorted_scores, sorted_values = zip(*combined)
-    #  return the sorted array from the closest distance string to the farest one
-    return sorted_values
+    
+    return sorted_values, sorted_scores
 
 
-def get_closer_name(actual, array_values, size=0, treshold=0.7):
+def get_closer_name(actual, array_values, size=0):
     results = calculate_distance(actual, array_values)
     if size>0:
         return results[:size]
     else:
         # return only if the name is real, cant be another complitely different one.
-        return results[0] if results[0]>treshold else None
+        return results[0]
 
 
 def get_info_from_anime(serched_anime):
