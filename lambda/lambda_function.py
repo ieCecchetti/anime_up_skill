@@ -158,6 +158,40 @@ class InfoOnAnimeIntentHandler(AbstractRequestHandler):
         )
 
 
+class TramaAnimeIntentHandler(AbstractRequestHandler):
+    """Handler for AllAnimeIntent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("TramaAnimeIntent")(handler_input)
+        
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        # get the handler_input["anime_name"] param
+        # Initialize session attributes
+        session_attr = handler_input.attributes_manager.session_attributes
+        # get the handler_input["anime_name"] param
+        anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value or session_attr.get('selected_anime', None)
+        if not anime_name:
+            speak_output = "Non ho capito di che anime stiamo parlando!"
+        else:
+            # store the anime name on the state for future operations
+            session_attr['selected_anime'] = anime_name
+            anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
+            selected_anime = utils.get_closer_name(anime_name, anime_list)
+            anime_info = utils.get_info_from_anime(selected_anime)
+            if anime_info:
+                speak_output = f"L'ultimo episodio di {anime_name} è {anime_info['episode']}"
+            else:
+                speak_output = f"Scusa ma non ho trovato nessuna informazione associata a: {anime_name}. Prova a scandire meglio il nome."
+        
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .ask(constants.FALLBACK_ASK)
+                .response
+        )
+
+
 class LastEpisodeIntentHandler(AbstractRequestHandler):
     """Handler for AllAnimeIntent."""
     def can_handle(self, handler_input):
@@ -402,6 +436,7 @@ sb.add_request_handler(SelectAnimeIntentHandler())
 sb.add_request_handler(TodayAnimeIntentHandler())
 sb.add_request_handler(AllAnimeIntentHandler())
 sb.add_request_handler(InfoOnAnimeIntentHandler())
+sb.add_request_handler(TramaAnimeIntentHandler())
 sb.add_request_handler(LastEpisodeIntentHandler())
 sb.add_request_handler(WhenOutAnimeIntentHandler())
 sb.add_request_handler(AskFeedbackIntentHandler())
