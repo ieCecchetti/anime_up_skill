@@ -180,7 +180,7 @@ class TramaAnimeIntentHandler(AbstractRequestHandler):
             selected_anime = utils.get_closer_name(anime_name, anime_list)
             anime_info = utils.get_info_from_anime(selected_anime)
             if anime_info:
-                speak_output = f"L'ultimo episodio di {anime_name} è {anime_info['episode']}"
+                speak_output = f"Certo, la trama è questa: {anime_info['descr']}"
             else:
                 speak_output = f"Scusa ma non ho trovato nessuna informazione associata a: {anime_name}. Prova a scandire meglio il nome."
         
