@@ -140,7 +140,7 @@ class WhatsOutInDateIntentHandler(AbstractRequestHandler):
         # get the handler_input["anime_name"] param
         unparsed_day = handler_input.request_envelope.request.intent.slots["day_of_week"].value
         selected_day = None
-        for key, value  in constants.DAY_OF_THE_WEEK:
+        for key, value in constants.DAY_OF_THE_WEEK.items():
             if value == unparsed_day:
                 selected_day = key
         if selected_day:
