@@ -139,7 +139,7 @@ class WhatsAnimeInIntentHandler(AbstractRequestHandler):
         # get the handler_input["dates_word"] param: ex `domani`
         date_word = handler_input.request_envelope.request.intent.slots["dates_word"].value
         days_to_add = constants.DAYS_TO_ADD[date_word]
-        if not anime_name:
+        if not days_to_add:
             speak_output = "Non ho capito di che giorno stai parlando!"
         else:
             current_day = retrieve_day(days_to_add)
