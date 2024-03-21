@@ -67,13 +67,13 @@ def calculate_distance(actual, array_values):
     return sorted_values
 
 
-def get_closer_name(actual, array_values, size=0):
+def get_closer_name(actual, array_values, size=0, treshold=0.7):
     results = calculate_distance(actual, array_values)
     if size>0:
         return results[:size]
     else:
         # return only if the name is real, cant be another complitely different one.
-        return results[0] if results[0]>0.7 else None
+        return results[0] if results[0]>treshold else None
 
 
 def get_info_from_anime(serched_anime):
