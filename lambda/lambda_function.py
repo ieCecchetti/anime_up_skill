@@ -189,14 +189,17 @@ class ConfirmIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         session_attr = handler_input.attributes_manager.session_attributes
         state = session_attr.get('state')
-        if state == 'shopping':
+        # Get the slot value from the user's response
+        answer = ask_utils.get_slot_value(handler_input, "answer")
+        if state == 'info_anime':
             # Handle confirmation in shopping context
-            return handler_input.response_builder.speak("Your choice is confirmed!").response
+            return handler_input.response_builder.speak(f"AAAAAAAH hai risposto: {answer} quando parlavamo di {state}").response
         elif state == 'other_state':
             # Handle confirmation in another context
             return handler_input.response_builder.speak("Confirmed!").response
         else:
             return handler_input.response_builder.speak("I'm not sure what you're confirming.").response
+
 
 class HelpIntentHandler(AbstractRequestHandler):
     """Handler for Help Intent."""
