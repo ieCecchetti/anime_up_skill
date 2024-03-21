@@ -72,7 +72,7 @@ def get_closer_name(actual, array_values, size=0):
     if size>0:
         return results[:size]
     else:
-        return results[0]
+        return results[0] if results[0]>0.7 else None
 
 
 def get_info_from_anime(serched_anime):
