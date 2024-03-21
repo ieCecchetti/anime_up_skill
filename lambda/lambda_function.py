@@ -104,6 +104,9 @@ class InfoOnAnimeIntentHandler(AbstractRequestHandler):
         
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
+        # Initialize session attributes
+        session_attr = handler_input.attributes_manager.session_attributes
+        session_attr['state'] = 'info_anime'
         # get the handler_input["anime_name"] param
         anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value
         anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
