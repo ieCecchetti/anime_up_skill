@@ -80,13 +80,13 @@ def get_anime_feed(rating, follower):
     max_follower = max([anime['follower'] for anime in constants.AIRING_ANIME])
     result = ((rating*100)/max_rating) + ((follower*100)/max_follower)
     if result>=90:
-        return "Mi sa che e' molto figo"
+        return "Mi sa che è molto figo"
     elif result>=70 and result<90:
         return "Anime tra i top!"
     elif result>=40 and result<70:
-        return "buono, si puo' vedere!"
+        return "buono, si può vedere!"
     else:
-        return "Lascia stare e' una merda!"
+        return "Lascia stare è una merda!"
     
     
     
