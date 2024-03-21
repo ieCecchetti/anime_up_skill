@@ -50,6 +50,9 @@ def levenshtein_distance(str1, str2):
     # Normalize the distance by dividing by the maximum length of the strings
     max_length = max(len(str1), len(str2))
     normalized_distance = score / max_length
+    # bonus if str1 is a substring of sr2
+    if str1 in str2:
+        normalized_distance -= 0.2
     # Return the normalized  Levenshtein distance
     return normalized_distance
 
