@@ -24,8 +24,6 @@ from ask_sdk_model.ui import SimpleCard
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-my_anime_list = []
-
 def retrieve_day():
     # Get the current date and time
     current_datetime = datetime.now()
@@ -141,9 +139,12 @@ class LastEpisodeIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         # get the handler_input["anime_name"] param
+        # get the handler_input["anime_name"] param
         anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value
-        if anime_name in [anime["name"] for anime in constants.AIRING_ANIME]:
-            anime_info = constants.AIRING_ANIME[anime_name]
+        anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
+        selected_anime = utils.get_closer_name(anime_name, anime_list)
+        anime_info = utils.get_info_from_anime(selected_anime)
+        if anime_info:
             speak_output = f"L'ultimo episodio di {anime_name} e' {anime_info['episode']}"
         else:
             speak_output = f"Scusa ma non ho trovato nessuna informazione associata a: {anime_name}. Prova a scandire meglio il nome."
