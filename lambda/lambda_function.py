@@ -111,9 +111,9 @@ class InfoOnAnimeIntentHandler(AbstractRequestHandler):
         day_of_week = constants.DAY_OF_THE_WEEK[anime_info['airing_day']]
         if anime_info:
             speak_output = f"{anime_name}, o con il suo nome completo {anime_info['name']}, e' un anime {anime_info['genere']}. " /
-                            "Ha {anime_info['season']} stagioni e attualmente siamo al {anime_info['episode']} episodio. " /
-                            "Esce di {day_of_week}. Attualmente ha un voto di {anime_info['rating']} con {anime_info['follower']} followers. "  /
-                            "Il mio personale commento e': {get_anime_feed(anime_info['rating'], anime_info['follower'])}"
+            "Ha {anime_info['season']} stagioni e attualmente siamo al {anime_info['episode']} episodio. " /
+            "Esce di {day_of_week}. Attualmente ha un voto di {anime_info['rating']} con {anime_info['follower']} followers. "  /
+            "Il mio personale commento e': {get_anime_feed(anime_info['rating'], anime_info['follower'])}"
         else:
             speak_output = f"Scusa, non ho trovato nessuna informazione su {anime_name}."
         
