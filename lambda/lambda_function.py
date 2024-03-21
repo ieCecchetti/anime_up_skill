@@ -280,7 +280,6 @@ class AskFeedbackIntentHandler(AbstractRequestHandler):
             anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
             selected_anime = utils.get_closer_name(anime_name, anime_list)
             anime_info = utils.get_info_from_anime(selected_anime)
-            day_of_week = constants.DAY_OF_THE_WEEK[anime_info['airing_day']]
             if anime_info:
                 # day_of_the_week = constants.DAY_OF_THE_WEEK[day_of_week_short]
                 speak_output = (
