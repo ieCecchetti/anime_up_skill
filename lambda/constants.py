@@ -8,7 +8,7 @@ DAY_OF_THE_WEEK = {
     "Sat": "Sabato",
     "Sun": "Domenica"
 }
-TIMESPAWN = {
+DAYS_TO_ADD = {
     "oggi": 0,
     "domani": 1,
     "dopo domani": 2,
