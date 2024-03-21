@@ -86,8 +86,11 @@ class WhichAnimeSelectedIntentHandler(AbstractRequestHandler):
         # Initialize session attributes
         session_attr = handler_input.attributes_manager.session_attributes
         # store the anime name on the state for future operations
-        anime_name = session_attr['selected_anime']
-        speak_output = f"TTapposto bro? Stiamo parlando di {anime_name}"
+        anime_name = session_attr.get('selected_anime', None)
+        if anime_name:
+            speak_output = f"TTapposto bro? Stiamo parlando di {anime_name}"
+        else:
+            speak_output = f"Ah non so, non me lo hai ancora specificato"
         
         return (
             handler_input.response_builder
