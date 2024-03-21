@@ -179,6 +179,21 @@ class WhenOutAnimeIntentHandler(AbstractRequestHandler):
                 .response
         )
 
+class ConfirmIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return ask_utils.is_intent_name("ConfirmIntent")(handler_input)
+        
+    def handle(self, handler_input):
+        session_attr = handler_input.attributes_manager.session_attributes
+        state = session_attr.get('state')
+        if state == 'shopping':
+            # Handle confirmation in shopping context
+            return handler_input.response_builder.speak("Your choice is confirmed!").response
+        elif state == 'other_state':
+            # Handle confirmation in another context
+            return handler_input.response_builder.speak("Confirmed!").response
+        else:
+            return handler_input.response_builder.speak("I'm not sure what you're confirming.").response
 
 class HelpIntentHandler(AbstractRequestHandler):
     """Handler for Help Intent."""
@@ -301,6 +316,7 @@ sb.add_request_handler(AllAnimeIntentHandler())
 sb.add_request_handler(InfoOnAnimeIntentHandler())
 sb.add_request_handler(LastEpisodeIntentHandler())
 sb.add_request_handler(WhenOutAnimeIntentHandler())
+sb.add_request_handler(ConfirmIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(FallbackIntentHandler())
