@@ -117,7 +117,7 @@ class AllAnimeIntentHandler(AbstractRequestHandler):
                 .response
         )
 
-# TODO: add trama here
+
 class InfoOnAnimeIntentHandler(AbstractRequestHandler):
     """Handler for AllAnimeIntent."""
     def can_handle(self, handler_input):
@@ -148,14 +148,12 @@ class InfoOnAnimeIntentHandler(AbstractRequestHandler):
                     f"Esce di {day_of_week}. Attualmente ha un voto di {anime_info['rating']} con {anime_info['follower']} followers. "
                     f"Il mio personale commento e': {utils.get_anime_feed(anime_info['rating'], anime_info['follower'])}"
                 )
-                reprompt = "Vuoi conoscere anche la trama dell'anime?"
             else:
                 speak_output = f"Scusa, non ho trovato nessuna informazione su {anime_name}."
         
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                .ask(reprompt)
                 .response
         )
 
@@ -406,6 +404,7 @@ sb.add_request_handler(AllAnimeIntentHandler())
 sb.add_request_handler(InfoOnAnimeIntentHandler())
 sb.add_request_handler(LastEpisodeIntentHandler())
 sb.add_request_handler(WhenOutAnimeIntentHandler())
+sb.add_request_handler(AskFeedbackIntentHandler())
 sb.add_request_handler(ConfirmIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
