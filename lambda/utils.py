@@ -46,8 +46,12 @@ def levenshtein_distance(str1, str2):
                                matrix[i][j - 1] + 1,      # insertion
                                matrix[i - 1][j - 1] + cost)  # substitution
 
-    # Return the Levenshtein distance
-    return matrix[len(str1)][len(str2)]
+    score = matrix[len(str1)][len(str2)]
+    # Normalize the distance by dividing by the maximum length of the strings
+    max_length = max(len(str1), len(str2))
+    normalized_distance = score / max_length
+    # Return the normalized  Levenshtein distance
+    return normalized_distance
 
 
 def calculate_distance(actual, array_values):
