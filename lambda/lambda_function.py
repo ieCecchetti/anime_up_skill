@@ -60,15 +60,19 @@ class SelectAnimeIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        
-        speak_output = f"Ok, ci sono in programma le uscite di: {today_list_str}"
+        # get the handler_input["anime_name"] param
+        anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value
+        # Initialize session attributes
+        session_attr = handler_input.attributes_manager.session_attributes
+        # store the anime name on the state for future operations
+        session_attr['selected_anime'] = anime_name
+        speak_output = f"Ok, parliamo di {anime_name}"
 
         # speak_output = f"Oggi, {current_day}, ci sono in programma le uscite di: stograncasso"
         
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                .ask(constants.FALLBACK_ASK)
                 .response
         )
     
