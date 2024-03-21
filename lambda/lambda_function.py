@@ -127,6 +127,39 @@ class TodayAnimeIntentHandler(AbstractRequestHandler):
         )
 
 
+class WhatsOutInDateIntentHandler(AbstractRequestHandler):
+    """Handler for TodayAnimeIntent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("WhatsOutInDateIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        # Initialize session attributes
+        session_attr = handler_input.attributes_manager.session_attributes
+        # get the handler_input["anime_name"] param
+        unparsed_day = handler_input.request_envelope.request.intent.slots["day_of_week"].value
+        selected_day = None
+        for key, value  in constants.DAY_OF_THE_WEEK:
+            if value == unparsed_day:
+                selected_day = key
+        if selected_day:
+            today_list = [anime['name'] for anime in constants.AIRING_ANIME if anime['airing_day'] == selected_day]
+            today_list_str = ', '.join(today_list) or 'stograncasso'
+            speak_output = f"{selected_day}, ci sono in programma le uscite di: {today_list_str}"
+        else:
+            speak_output = f"Scusa bro, Non ho capito che giorno intendi!"
+
+        # speak_output = f"Oggi, {current_day}, ci sono in programma le uscite di: stograncasso"
+        
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .ask(constants.FALLBACK_ASK)
+                .response
+        )
+
+
 class AllAnimeIntentHandler(AbstractRequestHandler):
     """Handler for AllAnimeIntent."""
     def can_handle(self, handler_input):
@@ -463,6 +496,7 @@ sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(SelectAnimeIntentHandler())
 sb.add_request_handler(WhichAnimeSelectedIntentHandler())
 sb.add_request_handler(TodayAnimeIntentHandler())
+sb.add_request_handler(WhatsOutInDateIntentHandler())
 sb.add_request_handler(AllAnimeIntentHandler())
 sb.add_request_handler(InfoOnAnimeIntentHandler())
 sb.add_request_handler(TramaAnimeIntentHandler())
