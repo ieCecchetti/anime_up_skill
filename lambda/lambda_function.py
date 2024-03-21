@@ -218,7 +218,10 @@ class WhenOutAnimeIntentHandler(AbstractRequestHandler):
             day_of_week = constants.DAY_OF_THE_WEEK[anime_info['airing_day']]
             if anime_info:
                 # day_of_the_week = constants.DAY_OF_THE_WEEK[day_of_week_short]
-                speak_output = f"Il mio personale commento e': {utils.get_anime_feed(anime_info['rating'], anime_info['follower'])}"
+                speak_output = (
+                    f"Attualmente ha un voto di {anime_info['rating']} con {anime_info['follower']} followers. "
+                    f"Il mio personale commento e': {utils.get_anime_feed(anime_info['rating'], anime_info['follower'])}"
+                )
             else:
                 speak_output = f"Scusa ma non ho trovato nessuna informazione associata a: {anime_name}. Prova a scandire meglio il nome."
         
