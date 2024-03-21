@@ -146,7 +146,7 @@ class WhatsOutInDateIntentHandler(AbstractRequestHandler):
         if selected_day:
             today_list = [anime['name'] for anime in constants.AIRING_ANIME if anime['airing_day'] == selected_day]
             today_list_str = ', '.join(today_list) or 'stograncasso'
-            speak_output = f"{selected_day}, ci sono in programma le uscite di: {today_list_str}"
+            speak_output = f"{unparsed_day.title()}, ci sono in programma le uscite di: {today_list_str}"
         else:
             speak_output = f"Scusa bro, Non ho capito che giorno intendi!"
 
