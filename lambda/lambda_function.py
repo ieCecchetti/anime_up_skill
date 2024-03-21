@@ -142,7 +142,6 @@ class WhatsAnimeInIntentHandler(AbstractRequestHandler):
         if not anime_name:
             speak_output = "Non ho capito di che giorno stai parlando!"
         else:
-            
             current_day = retrieve_day(days_to_add)
             today_list = [anime['name'] for anime in constants.AIRING_ANIME if anime['airing_day'] == current_day]
             today_list_str = ', '.join(today_list) or 'stograncasso'
