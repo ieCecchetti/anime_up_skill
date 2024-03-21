@@ -218,7 +218,41 @@ class WhenOutAnimeIntentHandler(AbstractRequestHandler):
             day_of_week = constants.DAY_OF_THE_WEEK[anime_info['airing_day']]
             if anime_info:
                 # day_of_the_week = constants.DAY_OF_THE_WEEK[day_of_week_short]
-                speak_output = f"{anime_name} esce tutti i {day_of_week}"
+                speak_output = f"Il mio personale commento e': {utils.get_anime_feed(anime_info['rating'], anime_info['follower'])}"
+            else:
+                speak_output = f"Scusa ma non ho trovato nessuna informazione associata a: {anime_name}. Prova a scandire meglio il nome."
+        
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .ask(constants.FALLBACK_ASK)
+                .response
+        )
+
+
+class AskFeedbackIntentHandler(AbstractRequestHandler):
+    """Handler for AllAnimeIntent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("AskFeedbackIntent")(handler_input)
+        
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        # get the handler_input["anime_name"] param
+        # Initialize session attributes
+        session_attr = handler_input.attributes_manager.session_attributes
+        # get the handler_input["anime_name"] param
+        anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value or session_attr.get('selected_anime', None)
+        if not anime_name:
+            speak_output = "Non ho capito di che anime stiamo parlando!"
+        else:
+            # store the anime name on the state for future operations
+            session_attr['selected_anime'] = anime_name
+            anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
+            selected_anime = utils.get_closer_name(anime_name, anime_list)
+            anime_info = utils.get_info_from_anime(selected_anime)
+            if anime_info:
+                speak_output = f"L'ultimo episodio di {anime_name} è {anime_info['episode']}"
             else:
                 speak_output = f"Scusa ma non ho trovato nessuna informazione associata a: {anime_name}. Prova a scandire meglio il nome."
         
