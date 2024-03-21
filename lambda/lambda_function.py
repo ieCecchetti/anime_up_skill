@@ -121,7 +121,6 @@ class InfoOnAnimeIntentHandler(AbstractRequestHandler):
                 f"Il mio personale commento e': {utils.get_anime_feed(anime_info['rating'], anime_info['follower'])}"
             )
             reprompt = "Vuoi conoscere anche la trama dell'anime?"
-            handler_input.response_builder.with_simple_card(selected_anime, speak_output)
         else:
             speak_output = f"Scusa, non ho trovato nessuna informazione su {anime_name}."
         
