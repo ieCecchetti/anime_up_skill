@@ -127,11 +127,11 @@ class TodayAnimeIntentHandler(AbstractRequestHandler):
         )
 
 
-class WhatsOutInDateIntentHandler(AbstractRequestHandler):
+class WhatsOutInDayOfWeekIntentHandler(AbstractRequestHandler):
     """Handler for TodayAnimeIntent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("WhatsOutInDateIntent")(handler_input)
+        return ask_utils.is_intent_name("WhatsOutInDayOfWeekIntent")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
