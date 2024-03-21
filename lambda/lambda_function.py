@@ -229,11 +229,11 @@ class LastEpisodeIntentHandler(AbstractRequestHandler):
         )
 
 
-class WhenOutAnimeIntentHandler(AbstractRequestHandler):
+class AskFeedbackIntentHandler(AbstractRequestHandler):
     """Handler for AllAnimeIntent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("WhenOutAnimeIntent")(handler_input)
+        return ask_utils.is_intent_name("AskFeedbackIntent")(handler_input)
         
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
@@ -268,11 +268,11 @@ class WhenOutAnimeIntentHandler(AbstractRequestHandler):
         )
 
 
-class AskFeedbackIntentHandler(AbstractRequestHandler):
+class WhenOutAnimeIntentHandler(AbstractRequestHandler):
     """Handler for AllAnimeIntent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("AskFeedbackIntent")(handler_input)
+        return ask_utils.is_intent_name("WhenOutAnimeIntent")(handler_input)
         
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
