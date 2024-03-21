@@ -193,6 +193,7 @@ class ConfirmIntentHandler(AbstractRequestHandler):
         answer = ask_utils.get_slot_value(handler_input, "answer")
         if state == 'info_anime':
             # Handle confirmation in shopping context
+            session_attr['state'] = None
             return handler_input.response_builder.speak(f"AAAAAAAH hai risposto: {answer} quando parlavamo di {state}").response
         else:
             return handler_input.response_builder.speak("I'm not sure what you're confirming.").response
