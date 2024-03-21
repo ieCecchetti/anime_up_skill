@@ -62,19 +62,31 @@ def calculate_distance(actual, array_values):
     #  return the sorted array from the closest distance string to the farest one
     return sorted_values
 
+
 def get_closer_name(actual, array_values):
     results = calculate_distance(actual, array_values)
     return results[0]
+
 
 def get_info_from_anime(serched_anime):
     for anime in constants.AIRING_ANIME:
         if anime["name"] == serched_anime:
             return anime
     return None
-    
+
+
 def get_anime_feed(rating, follower):
     max_rating = max([anime['rating'] for anime in constants.AIRING_ANIME])
     max_follower = max([anime['follower'] for anime in constants.AIRING_ANIME])
+    result = ((rating*100)/max_rating) + ((follower*100)/max_follower)
+    if result>=90:
+        return "Mi sa che e' molto figo"
+    elif result>=70 and result<90:
+        return "Anime tra i top!"
+    elif result>=40 and result<70:
+        return "buono, si puo' vedere!"
+    else:
+        return "Lascia stare e' una merda!"
     
     
     
