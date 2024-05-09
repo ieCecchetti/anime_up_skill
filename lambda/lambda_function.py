@@ -17,11 +17,24 @@ from ask_sdk_model import Response
 from datetime import datetime, timedelta
 import constants
 import utils
+import json
 
 # from datetime import datetime
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+
+
+def retrieve_anime():
+    logger.debug("Retrieving anime info..")
+    # Open the JSON file in read mode
+    with open('airing_anime.json', 'r') as file:
+        # Load the JSON data from the file
+        return json.load(file)
+
+
+AIRING_ANIME = retrieve_anime()
+
 
 def retrieve_day(plus_days=0):
     # Get the current date and time
@@ -32,8 +45,10 @@ def retrieve_day(plus_days=0):
     day_of_week_str = current_datetime.strftime('%a')
     return day_of_week_str
 
+
 class LaunchRequestHandler(AbstractRequestHandler):
     """Handler for Skill Launch."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
 
@@ -45,14 +60,15 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
         return (
             handler_input.response_builder
-                .speak(speak_output)
-                .ask(speak_output)
-                .response
+            .speak(speak_output)
+            .ask(speak_output)
+            .response
         )
 
 
 class SelectAnimeIntentHandler(AbstractRequestHandler):
     """Handler for SelectAnimeIntent."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("SelectAnimeIntent")(handler_input)
@@ -66,17 +82,18 @@ class SelectAnimeIntentHandler(AbstractRequestHandler):
         # store the anime name on the state for future operations
         session_attr['selected_anime'] = anime_name
         speak_output = f"Ok, parliamo di {anime_name}"
-        
+
         return (
             handler_input.response_builder
-                .speak(speak_output)
-                .ask(constants.FALLBACK_ASK)
-                .response
+            .speak(speak_output)
+            .ask(constants.FALLBACK_ASK)
+            .response
         )
 
 
 class WhichAnimeSelectedIntentHandler(AbstractRequestHandler):
     """Handler for SelectAnimeIntent."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("WhichAnimeSelectedIntent")(handler_input)
@@ -89,22 +106,23 @@ class WhichAnimeSelectedIntentHandler(AbstractRequestHandler):
         anime_name = session_attr.get('selected_anime', None)
         if anime_name:
             # get the anime info
-            anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
+            anime_list = [anime["name"] for anime in AIRING_ANIME]
             selected_anime = utils.get_closer_name(anime_name, anime_list)
             speak_output = f"Stiamo parlando di: {selected_anime}"
         else:
             speak_output = f"Ah, non lo so! Non me lo hai ancora specificato."
-        
+
         return (
             handler_input.response_builder
-                .speak(speak_output)
-                .ask(constants.FALLBACK_ASK)
-                .response
+            .speak(speak_output)
+            .ask(constants.FALLBACK_ASK)
+            .response
         )
 
 
 class TodayAnimeIntentHandler(AbstractRequestHandler):
     """Handler for TodayAnimeIntent."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("TodayAnimeIntent")(handler_input)
@@ -112,22 +130,24 @@ class TodayAnimeIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         current_day = retrieve_day()
-        today_list = [anime['name'] for anime in constants.AIRING_ANIME if anime['airing_day'] == current_day]
+        today_list = [anime['name']
+                      for anime in AIRING_ANIME if anime['airing_day'] == current_day]
         today_list_str = ', '.join(today_list) or 'stograncasso'
         speak_output = f"Oggi, ci sono in programma le uscite di: {today_list_str}"
 
         # speak_output = f"Oggi, {current_day}, ci sono in programma le uscite di: stograncasso"
-        
+
         return (
             handler_input.response_builder
-                .speak(speak_output)
-                .ask(constants.FALLBACK_ASK)
-                .response
+            .speak(speak_output)
+            .ask(constants.FALLBACK_ASK)
+            .response
         )
 
 
 class WhatsAnimeInIntentHandler(AbstractRequestHandler):
     """Handler for TodayAnimeIntent."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("WhatsAnimeInIntent")(handler_input)
@@ -143,21 +163,24 @@ class WhatsAnimeInIntentHandler(AbstractRequestHandler):
             speak_output = "Non ho capito di che giorno stai parlando!"
         else:
             current_day = retrieve_day(days_to_add)
-            today_list = [anime['name'] for anime in constants.AIRING_ANIME if anime['airing_day'] == current_day]
+            today_list = [anime['name']
+                          for anime in AIRING_ANIME if anime['airing_day'] == current_day]
             today_list_str = ', '.join(today_list) or 'stograncasso'
             speak_output = f"{date_word}, ci sono in programma le uscite di: {today_list_str}"
 
         # speak_output = f"Oggi, {current_day}, ci sono in programma le uscite di: stograncasso"
-        
+
         return (
             handler_input.response_builder
-                .speak(speak_output)
-                .ask(constants.FALLBACK_ASK)
-                .response
+            .speak(speak_output)
+            .ask(constants.FALLBACK_ASK)
+            .response
         )
+
 
 class WhatsOutInDayOfWeekIntentHandler(AbstractRequestHandler):
     """Handler for TodayAnimeIntent."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("WhatsOutInDayOfWeekIntent")(handler_input)
@@ -173,54 +196,58 @@ class WhatsOutInDayOfWeekIntentHandler(AbstractRequestHandler):
             if value == unparsed_day.title():
                 selected_day = key
         if selected_day:
-            today_list = [anime['name'] for anime in constants.AIRING_ANIME if anime['airing_day'] == selected_day]
+            today_list = [anime['name']
+                          for anime in AIRING_ANIME if anime['airing_day'] == selected_day]
             today_list_str = ', '.join(today_list) or 'stograncasso'
             speak_output = f"{unparsed_day.title()}, ci sono in programma le uscite di: {today_list_str}"
         else:
             speak_output = f"Scusa bro, Non ho capito che giorno intendi!"
 
         # speak_output = f"Oggi, {current_day}, ci sono in programma le uscite di: stograncasso"
-        
+
         return (
             handler_input.response_builder
-                .speak(speak_output)
-                .ask(constants.FALLBACK_ASK)
-                .response
+            .speak(speak_output)
+            .ask(constants.FALLBACK_ASK)
+            .response
         )
 
 
 class AllAnimeIntentHandler(AbstractRequestHandler):
     """Handler for AllAnimeIntent."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("AllAnimeIntent")(handler_input)
-        
+
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        airing_list = [anime['name'] for anime in constants.AIRING_ANIME]
+        airing_list = [anime['name'] for anime in AIRING_ANIME]
 
         speak_output = f"Al momento gli anime di cui ho informazioni sono: {', '.join(airing_list)}"
-        
+
         return (
             handler_input.response_builder
-                .speak(speak_output)
-                .ask(constants.FALLBACK_ASK)
-                .response
+            .speak(speak_output)
+            .ask(constants.FALLBACK_ASK)
+            .response
         )
 
 
 class InfoOnAnimeIntentHandler(AbstractRequestHandler):
     """Handler for AllAnimeIntent."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("InfoOnAnimeIntent")(handler_input)
-        
+
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         # Initialize session attributes
         session_attr = handler_input.attributes_manager.session_attributes
         # get the handler_input["anime_name"] param
-        anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value or session_attr.get('selected_anime', None)
+        anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value or session_attr.get(
+            'selected_anime', None)
         if not anime_name:
             speak_output = "Non ho capito di che anime stiamo parlando!"
         else:
@@ -228,7 +255,7 @@ class InfoOnAnimeIntentHandler(AbstractRequestHandler):
             # store the anime name on the state for future operations
             session_attr['selected_anime'] = anime_name
             # get the anime info
-            anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
+            anime_list = [anime["name"] for anime in AIRING_ANIME]
             selected_anime = utils.get_closer_name(anime_name, anime_list)
             anime_info = utils.get_info_from_anime(selected_anime)
             day_of_week = constants.DAY_OF_THE_WEEK[anime_info['airing_day']]
@@ -241,34 +268,36 @@ class InfoOnAnimeIntentHandler(AbstractRequestHandler):
                 )
             else:
                 speak_output = f"Scusa, non ho trovato nessuna informazione su {anime_name}."
-        
+
         return (
             handler_input.response_builder
-                .speak(speak_output)
-                .ask(constants.FALLBACK_ASK)
-                .response
+            .speak(speak_output)
+            .ask(constants.FALLBACK_ASK)
+            .response
         )
 
 
 class TramaAnimeIntentHandler(AbstractRequestHandler):
     """Handler for AllAnimeIntent."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("TramaAnimeIntent")(handler_input)
-        
+
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         # get the handler_input["anime_name"] param
         # Initialize session attributes
         session_attr = handler_input.attributes_manager.session_attributes
         # get the handler_input["anime_name"] param
-        anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value or session_attr.get('selected_anime', None)
+        anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value or session_attr.get(
+            'selected_anime', None)
         if not anime_name:
             speak_output = "Non ho capito di che anime stiamo parlando!"
         else:
             # store the anime name on the state for future operations
             session_attr['selected_anime'] = anime_name
-            anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
+            anime_list = [anime["name"] for anime in AIRING_ANIME]
             selected_anime = utils.get_closer_name(anime_name, anime_list)
             anime_info = utils.get_info_from_anime(selected_anime)
             if anime_info:
@@ -278,121 +307,127 @@ class TramaAnimeIntentHandler(AbstractRequestHandler):
                     speak_output = f"Scusa ma non ho informazioni sulla trama di questo anime. Mando una segnalazione, magari tra qualche giorno mi aggiornano."
             else:
                 speak_output = f"Scusa ma non ho trovato nessuna informazione associata a: {anime_name}. Prova a scandire meglio il nome."
-        
+
         return (
             handler_input.response_builder
-                .speak(speak_output)
-                .ask(constants.FALLBACK_ASK)
-                .response
+            .speak(speak_output)
+            .ask(constants.FALLBACK_ASK)
+            .response
         )
 
 
 class AskFeedbackIntentHandler(AbstractRequestHandler):
     """Handler for AllAnimeIntent."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("AskFeedbackIntent")(handler_input)
-        
+
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         # Initialize session attributes
         session_attr = handler_input.attributes_manager.session_attributes
         # get the handler_input["anime_name"] param
-        anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value or session_attr.get('selected_anime', None)
+        anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value or session_attr.get(
+            'selected_anime', None)
         if not anime_name:
             speak_output = "Non ho capito di che anime stiamo parlando!"
         else:
             # store the anime name on the state for future operations
             session_attr['selected_anime'] = anime_name
-            anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
+            anime_list = [anime["name"] for anime in AIRING_ANIME]
             selected_anime = utils.get_closer_name(anime_name, anime_list)
             anime_info = utils.get_info_from_anime(selected_anime)
             if anime_info:
                 speak_output = f"Il mio personale commento e': {utils.get_anime_feed(anime_info['rating'], anime_info['follower'])}"
-                
+
             else:
                 speak_output = f"Scusa, non ho trovato nessuna informazione su {anime_name}."
-        
+
         return (
             handler_input.response_builder
-                .speak(speak_output)
-                .ask(constants.FALLBACK_ASK)
-                .response
+            .speak(speak_output)
+            .ask(constants.FALLBACK_ASK)
+            .response
         )
 
 
 class LastEpisodeIntentHandler(AbstractRequestHandler):
     """Handler for AllAnimeIntent."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("LastEpisodeIntent")(handler_input)
-        
+
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         # get the handler_input["anime_name"] param
         # Initialize session attributes
         session_attr = handler_input.attributes_manager.session_attributes
         # get the handler_input["anime_name"] param
-        anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value or session_attr.get('selected_anime', None)
+        anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value or session_attr.get(
+            'selected_anime', None)
         if not anime_name:
             speak_output = "Non ho capito di che anime stiamo parlando!"
         else:
             # store the anime name on the state for future operations
             session_attr['selected_anime'] = anime_name
-            anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
+            anime_list = [anime["name"] for anime in AIRING_ANIME]
             selected_anime = utils.get_closer_name(anime_name, anime_list)
             anime_info = utils.get_info_from_anime(selected_anime)
             if anime_info:
                 speak_output = f"L'ultimo episodio di {anime_name} è {anime_info['episode']}"
             else:
                 speak_output = f"Scusa ma non ho trovato nessuna informazione associata a: {anime_name}. Prova a scandire meglio il nome."
-        
+
         return (
             handler_input.response_builder
-                .speak(speak_output)
-                .ask(constants.FALLBACK_ASK)
-                .response
+            .speak(speak_output)
+            .ask(constants.FALLBACK_ASK)
+            .response
         )
 
 
 class WhenOutAnimeIntentHandler(AbstractRequestHandler):
     """Handler for AllAnimeIntent."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("WhenOutAnimeIntent")(handler_input)
-        
+
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         # get the handler_input["anime_name"] param
         # Initialize session attributes
         session_attr = handler_input.attributes_manager.session_attributes
         # get the handler_input["anime_name"] param
-        anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value or session_attr.get('selected_anime', None)
+        anime_name = handler_input.request_envelope.request.intent.slots["anime_name"].value or session_attr.get(
+            'selected_anime', None)
         if not anime_name:
             speak_output = "Non ho capito di che anime stiamo parlando!"
         else:
             # store the anime name on the state for future operations
             session_attr['selected_anime'] = anime_name
-            anime_list = [anime["name"] for anime in constants.AIRING_ANIME]
+            anime_list = [anime["name"] for anime in AIRING_ANIME]
             selected_anime = utils.get_closer_name(anime_name, anime_list)
             anime_info = utils.get_info_from_anime(selected_anime)
             if anime_info:
                 speak_output = f"L'ultimo episodio di {anime_name} è {anime_info['episode']}"
             else:
                 speak_output = f"Scusa ma non ho trovato nessuna informazione associata a: {anime_name}. Prova a scandire meglio il nome."
-        
+
         return (
             handler_input.response_builder
-                .speak(speak_output)
-                .ask(constants.FALLBACK_ASK)
-                .response
+            .speak(speak_output)
+            .ask(constants.FALLBACK_ASK)
+            .response
         )
 
 
 class ConfirmIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         return ask_utils.is_intent_name("ConfirmIntent")(handler_input)
-        
+
     def handle(self, handler_input):
         session_attr = handler_input.attributes_manager.session_attributes
         state = session_attr.get('state')
@@ -408,6 +443,7 @@ class ConfirmIntentHandler(AbstractRequestHandler):
 
 class HelpIntentHandler(AbstractRequestHandler):
     """Handler for Help Intent."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("AMAZON.HelpIntent")(handler_input)
@@ -418,14 +454,15 @@ class HelpIntentHandler(AbstractRequestHandler):
 
         return (
             handler_input.response_builder
-                .speak(speak_output)
-                .ask(speak_output)
-                .response
+            .speak(speak_output)
+            .ask(speak_output)
+            .response
         )
 
 
 class CancelOrStopIntentHandler(AbstractRequestHandler):
     """Single handler for Cancel and Stop Intent."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return (ask_utils.is_intent_name("AMAZON.CancelIntent")(handler_input) or
@@ -437,12 +474,14 @@ class CancelOrStopIntentHandler(AbstractRequestHandler):
 
         return (
             handler_input.response_builder
-                .speak(speak_output)
-                .response
+            .speak(speak_output)
+            .response
         )
+
 
 class FallbackIntentHandler(AbstractRequestHandler):
     """Single handler for Fallback Intent."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("AMAZON.FallbackIntent")(handler_input)
@@ -455,8 +494,10 @@ class FallbackIntentHandler(AbstractRequestHandler):
 
         return handler_input.response_builder.speak(speech).ask(reprompt).response
 
+
 class SessionEndedRequestHandler(AbstractRequestHandler):
     """Handler for Session End."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_request_type("SessionEndedRequest")(handler_input)
@@ -475,6 +516,7 @@ class IntentReflectorHandler(AbstractRequestHandler):
     for your intents by defining them above, then also adding them to the request
     handler chain below.
     """
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_request_type("IntentRequest")(handler_input)
@@ -486,9 +528,9 @@ class IntentReflectorHandler(AbstractRequestHandler):
 
         return (
             handler_input.response_builder
-                .speak(speak_output)
-                # .ask("add a reprompt if you want to keep the session open for the user to respond")
-                .response
+            .speak(speak_output)
+            # .ask("add a reprompt if you want to keep the session open for the user to respond")
+            .response
         )
 
 
@@ -497,6 +539,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
     stating the request handler chain is not found, you have not implemented a handler for
     the intent being invoked or included it in the skill builder below.
     """
+
     def can_handle(self, handler_input, exception):
         # type: (HandlerInput, Exception) -> bool
         return True
@@ -509,9 +552,9 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 
         return (
             handler_input.response_builder
-                .speak(speak_output)
-                .ask(speak_output)
-                .response
+            .speak(speak_output)
+            .ask(speak_output)
+            .response
         )
 
 # The SkillBuilder object acts as the entry point for your skill, routing all request and response
@@ -538,7 +581,8 @@ sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(FallbackIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
-sb.add_request_handler(IntentReflectorHandler()) # make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
+# make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
+sb.add_request_handler(IntentReflectorHandler())
 
 sb.add_exception_handler(CatchAllExceptionHandler())
 

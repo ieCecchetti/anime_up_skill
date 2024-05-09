@@ -1,0 +1,466 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "slots": [],
+          "name": "TodayAnimeIntent",
+          "samples": [
+            "che anime ci sono oggi",
+            "che esce in questa giornata",
+            "cosa esce quest\u0027oggi",
+            "che roba sta uscendo",
+            "che ci sta",
+            "che hanno buttato fuori",
+            "anime hiring oggi",
+            "cosa uscito oggi",
+            "che esce oggi"
+          ]
+        },
+        {
+          "slots": [],
+          "name": "AllAnimeIntent",
+          "samples": [
+            "che stanno buttando fuori",
+            "dimmi che anime ci sono",
+            "dammi la lista anime",
+            "dammi la lista anime disponibile",
+            "tutti gli anime",
+            "possibili anime",
+            "anime da scegliere",
+            "hiring anime ",
+            "che anime ci sono ",
+            "che anime posso seguire"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "anime_name",
+              "type": "hiring_anime"
+            }
+          ],
+          "name": "LastEpisodeIntent",
+          "samples": [
+            "qual\u0027è l\u0027ultimo episodio",
+            "a che episodio è",
+            "a che episodio siamo arrivati",
+            "ultimo episodio",
+            "{anime_name} a che episodio e\u0027 arrivato",
+            "ultiomo episodio di {anime_name}",
+            "a che episodio siamo di {anime_name}",
+            "qual\u0027e\u0027 l\u0027ultimo episodio di {anime_name}",
+            "a che episodio siamo arrivati di {anime_name}"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "anime_name",
+              "type": "hiring_anime"
+            }
+          ],
+          "name": "WhenOutAnimeIntent",
+          "samples": [
+            "quando lo buttano fuori",
+            "quando esce",
+            "di quando capita",
+            "che giorno lo buttano fuori",
+            "che giorno esce",
+            "di che giorno esce",
+            "ma in che giorno esce {anime_name} ",
+            "ma quando esce {anime_name}",
+            "In che giorno esce {anime_name} ",
+            "quando e\u0027 la data di uscita di {anime_name}",
+            "quando buttano fuori {anime_name}",
+            "giorno uscita {anime_name}",
+            "quando esce {anime_name}"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "anime_name",
+              "type": "hiring_anime"
+            }
+          ],
+          "name": "InfoOnAnimeIntent",
+          "samples": [
+            "che mi dici su {anime_name}",
+            "che mi dici di {anime_name}",
+            "che sai dirmi di {anime_name}",
+            "che sai dirmi su {anime_name}",
+            "che fa {anime_name}",
+            "di che parla {anime_name}",
+            "che e\u0027 {anime_name}",
+            "che cos\u0027e\u0027 {anime_name}",
+            "che sai su {anime_name}",
+            "che sai di {anime_name}",
+            "cosa sai su {anime_name}",
+            "cosa sai di {anime_name}",
+            "info su {anime_name}",
+            "dammi informazioni su {anime_name}"
+          ]
+        },
+        {
+          "slots": [],
+          "name": "ConfirmIntent",
+          "samples": [
+            "no",
+            "yes"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "anime_name",
+              "type": "hiring_anime"
+            }
+          ],
+          "name": "SelectAnimeIntent",
+          "samples": [
+            "seleziona {anime_name}",
+            "sto parlando di {anime_name}",
+            "{anime_name}",
+            "di {anime_name}",
+            "sto dicendo di {anime_name}",
+            "intendo {anime_name}",
+            "parlo di {anime_name}",
+            "parliamo di {anime_name}",
+            "stiamo parlando di {anime_name}"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "anime_name",
+              "type": "hiring_anime"
+            }
+          ],
+          "name": "AskFeedbackIntent",
+          "samples": [
+            "dovrei vederlo {anime_name}",
+            "dovrei cominciarlo {anime_name}",
+            "me lo consigli {anime_name} ",
+            "devo cominciarlo",
+            "lo comincio",
+            "dici che dovrei cominciarlo",
+            "lo consigli",
+            "ma e figo",
+            "come lo valuti",
+            "ma è bello come anime"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "anime_name",
+              "type": "hiring_anime"
+            }
+          ],
+          "name": "TramaAnimeIntent",
+          "samples": [
+            "riassunto di {anime_name}",
+            "trama di {anime_name}",
+            "qual\u0027è la trama di {anime_name}",
+            "dimmi la trama di {anime_name}",
+            "dammi la trama di {anime_name}",
+            "raccontami l\u0027anime",
+            "che sai dirmi della trama",
+            "qual\u0027è la trama"
+          ]
+        },
+        {
+          "slots": [],
+          "name": "WhichAnimeSelectedIntent",
+          "samples": [
+            "di chi stiamo parlando",
+            "di chi stai parlando",
+            "che stai dicendo",
+            "che anime hai selezionato",
+            "di che stiamo parlando",
+            "di chi parli",
+            "di che anime stiamo parlando"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "day_of_week",
+              "type": "day_of_week"
+            }
+          ],
+          "name": "WhatsOutInDayOfWeekIntent",
+          "samples": [
+            "che anime esce di {day_of_week}",
+            "cosa esce di {day_of_week}",
+            "che esce di {day_of_week}",
+            "che esce {day_of_week}"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "dates_word",
+              "type": "tempo_ita"
+            }
+          ],
+          "name": "WhatsAnimeInIntent",
+          "samples": [
+            "{dates_word}",
+            "e {dates_word}",
+            "cosa esce {dates_word}",
+            "che cosa esce {dates_word}",
+            "che usciva {dates_word}",
+            "che buttano fuori {dates_word}",
+            "che esce {dates_word}"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "synonyms": [
+                  "teatro dell\u0027oscurita",
+                  "teatro",
+                  "theatre"
+                ],
+                "value": "theatre of darkness"
+              }
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "fire hunters",
+                  "hunter",
+                  "fire"
+                ],
+                "value": "the fire hunter"
+              }
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "lafo",
+                  "shagiri lafo",
+                  "shagiri la frontier",
+                  "shagiri"
+                ],
+                "value": "shangri-la frontier"
+              }
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "rubber",
+                  "luffy",
+                  "op"
+                ],
+                "value": "one piece"
+              }
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "exorcism"
+                ],
+                "value": "blue exorcist"
+              }
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "leveling",
+                  "solo"
+                ],
+                "value": "solo leveling"
+              }
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "mascial",
+                  "mashalle"
+                ],
+                "value": "mashle"
+              }
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "daigo",
+                  "firefighter"
+                ],
+                "value": "firefighter daigo: rescuer in orange"
+              }
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "frieren"
+                ],
+                "value": "frieren - oltre la fine del viaggio"
+              }
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "la strega e la bestia",
+                  "the beast",
+                  "the witch"
+                ],
+                "value": "the witch and the beast"
+              }
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "metallic",
+                  "metallic ruge",
+                  "ruge",
+                  "rouge"
+                ],
+                "value": "metallic rouge"
+              }
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "classrum ",
+                  "classroom"
+                ],
+                "value": "classroom of the elite"
+              }
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "moonlit fantasy",
+                  "tsukimichi"
+                ],
+                "value": "tsukimichi -moonlit fantasy"
+              }
+            }
+          ],
+          "name": "hiring_anime"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "Domenica"
+              }
+            },
+            {
+              "name": {
+                "value": "Sabato"
+              }
+            },
+            {
+              "name": {
+                "value": "Venerdì"
+              }
+            },
+            {
+              "name": {
+                "value": "Giovedì"
+              }
+            },
+            {
+              "name": {
+                "value": "Mercoledì"
+              }
+            },
+            {
+              "name": {
+                "value": "Martedì"
+              }
+            },
+            {
+              "name": {
+                "value": "Lunedì"
+              }
+            }
+          ],
+          "name": "day_of_week"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "synonyms": [
+                  "Due giorni fa",
+                  "L\u0027altro ieri"
+                ],
+                "value": "l\u0027altro ieri"
+              }
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "Un giorno fa",
+                  "Ieri"
+                ],
+                "value": "ieri"
+              }
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "Dopodomani",
+                  "Dopo domani",
+                  "Tra due giorni",
+                  "tra due giorni"
+                ],
+                "value": "dopodomani"
+              }
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "Tra un giorno",
+                  "tra un giorno",
+                  "Domani"
+                ],
+                "value": "domani"
+              }
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "Quest\u0027oggi",
+                  "Oggi "
+                ],
+                "value": "oggi"
+              }
+            }
+          ],
+          "name": "tempo_ita"
+        }
+      ],
+      "invocationName": "anime up"
+    }
+  }
+}
