@@ -1,0 +1,70 @@
+name: Deploy Alexa Skill
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install ASK CLI
+        run: npm install -g ask-cli
+
+      - name: Configure ASK CLI with credentials
+        env:
+          ASK_ACCESS_TOKEN: ${{ secrets.ASK_ACCESS_TOKEN }}
+          ASK_REFRESH_TOKEN: ${{ secrets.ASK_REFRESH_TOKEN }}
+        run: |
+          # Create ASK CLI config directory
+          mkdir -p ~/.ask
+          
+          # Calculate expiration time (1 hour from now) - GitHub Actions runs on Linux
+          # Note: Even if access_token expires, ASK CLI will automatically use refresh_token to get a new one
+          EXPIRES_AT=$(date -u -d '+1 hour' +%Y-%m-%dT%H:%M:%S.000Z)
+          
+          # Create CLI config file with tokens
+          # The refresh_token is long-lived (30-90 days) and will be used to auto-refresh the access_token
+          cat > ~/.ask/cli_config <<EOF
+          {
+            "profiles": {
+              "default": {
+                "token": {
+                  "access_token": "${ASK_ACCESS_TOKEN}",
+                  "refresh_token": "${ASK_REFRESH_TOKEN}",
+                  "token_type": "Bearer",
+                  "expires_in": 3600,
+                  "expires_at": "${EXPIRES_AT}"
+                }
+              }
+            }
+          }
+          EOF
+          
+          echo "✅ ASK CLI configured successfully"
+          echo "ℹ️  Access token expires in 1 hour, but refresh token is long-lived (30-90 days)"
+          echo "ℹ️  ASK CLI will automatically refresh the access token when needed"
+
+      - name: Deploy to Development Stage (develop branch)
+        if: github.ref == 'refs/heads/develop'
+        run: |
+          echo "🚀 Deploying to Development stage..."
+          ask deploy --stage development
+
+      - name: Deploy to Live/Production Stage (main branch)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "🚀 Deploying to Live/Production stage..."
+          ask deploy --stage live
+
