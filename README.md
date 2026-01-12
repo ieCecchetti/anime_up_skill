@@ -46,15 +46,19 @@ This command will:
 
 ### Deploying to Different Stages
 
-- Deploy to **development** stage (for testing):
-  ```bash
-  ask deploy --stage development
-  ```
+For **Alexa Hosted Skills**, the `ask deploy` command deploys to the development stage by default. To promote to production/live:
 
-- Deploy to **live/production** stage:
-  ```bash
-  ask deploy --stage live
-  ```
+1. Deploy using:
+   ```bash
+   ask deploy
+   ```
+
+2. Then promote to live through the **Alexa Developer Console**:
+   - Go to your skill in the console
+   - Navigate to the "Code" tab
+   - Click "Deploy" to promote from development to live
+
+**Note:** The `--stage` option is not available for hosted skills. Stages are managed through the Alexa Developer Console interface.
 
 ### Deploying Only Specific Components
 
@@ -94,12 +98,66 @@ To check remotes:
 git remote -v
 ```
 
+## 🧪 Testing Your Skill Locally
+
+You can test your skill in an interactive terminal chat without deploying to AWS Lambda.
+
+### Interactive Terminal Chat (Recommended)
+
+Use ASK CLI's `ask dialog` command for an interactive terminal chat interface:
+
+1. **First, deploy your skill** (even from develop branch):
+   ```bash
+   ask deploy
+   ```
+
+2. **Start the interactive dialog:**
+   ```bash
+   ask dialog -s amzn1.ask.skill.fc486ef7-e2c2-4817-bbb1-e8c96a6967ef -l it-IT -g development
+   ```
+   
+   Or if you're in the project directory, ASK CLI can auto-detect the skill:
+   ```bash
+   ask dialog -l it-IT -g development
+   ```
+
+3. **Type your utterances** in the terminal and see responses interactively!
+
+   Example:
+   ```
+   User > apri anime up
+   Alexa > Ciao, mio piccolo nerd preferito, che vuoi sapere?
+   
+   User > quali anime escono oggi
+   Alexa > Oggi, ci sono in programma le uscite di: ...
+   ```
+
+   Type `exit` or `quit` to end the session.
+
+### Alternative: Alexa Developer Console Test Simulator
+
+1. **Deploy your skill:**
+   ```bash
+   ask deploy
+   ```
+
+2. **Test in the console:**
+   - Go to [Alexa Developer Console](https://developer.amazon.com/alexa/console/ask)
+   - Open your skill
+   - Go to the **Test** tab
+   - Enable testing (toggle to "Development")
+   - Type or speak your utterances to test
+
 ## 🤖 Automated Deployment with GitHub Actions
 
-This project includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that automatically deploys your skill when you push to specific branches:
+This project includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that automatically deploys your skill when you push to the `main` branch.
 
-- **`develop` branch** → Deploys to **`development`** stage (test/dev environment)
-- **`main` branch** → Deploys to **`live`** stage (production environment)
+**Workflow:**
+- **`develop` branch** → Use for development/testing (no auto-deploy)
+- **`main` branch** → Auto-deploys to **development** stage when pushed
+- **Promote to Live** → After deployment, manually promote to live via Alexa Developer Console
+
+**Note:** For hosted skills, `ask deploy` always deploys to the development stage. To promote to production/live, go to the Alexa Developer Console → Your Skill → Code tab → Click "Deploy" to promote.
 
 ### Setting Up GitHub Actions
 
