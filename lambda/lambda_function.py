@@ -130,9 +130,14 @@ class TodayAnimeIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         current_day = retrieve_day()
-        today_list = [anime['name']
-                      for anime in AIRING_ANIME if anime['airing_day'] == current_day]
-        today_list_str = ', '.join(today_list) or 'stograncasso'
+        today_list = [
+            anime["name"]
+            for anime in AIRING_ANIME
+            if anime["airing_day"] == current_day and anime.get("name")
+        ]
+        # Filter out None values and ensure all items are strings
+        today_list = [str(name) for name in today_list if name]
+        today_list_str = ", ".join(today_list) if today_list else "stograncasso"
         speak_output = f"Oggi, ci sono in programma le uscite di: {today_list_str}"
 
         # speak_output = f"Oggi, {current_day}, ci sono in programma le uscite di: stograncasso"
@@ -163,9 +168,14 @@ class WhatsAnimeInIntentHandler(AbstractRequestHandler):
             speak_output = "Non ho capito di che giorno stai parlando!"
         else:
             current_day = retrieve_day(days_to_add)
-            today_list = [anime['name']
-                          for anime in AIRING_ANIME if anime['airing_day'] == current_day]
-            today_list_str = ', '.join(today_list) or 'stograncasso'
+            today_list = [
+                anime["name"]
+                for anime in AIRING_ANIME
+                if anime["airing_day"] == current_day and anime.get("name")
+            ]
+            # Filter out None values and ensure all items are strings
+            today_list = [str(name) for name in today_list if name]
+            today_list_str = ", ".join(today_list) if today_list else "stograncasso"
             speak_output = f"{date_word}, ci sono in programma le uscite di: {today_list_str}"
 
         # speak_output = f"Oggi, {current_day}, ci sono in programma le uscite di: stograncasso"
@@ -196,9 +206,14 @@ class WhatsOutInDayOfWeekIntentHandler(AbstractRequestHandler):
             if value == unparsed_day.title():
                 selected_day = key
         if selected_day:
-            today_list = [anime['name']
-                          for anime in AIRING_ANIME if anime['airing_day'] == selected_day]
-            today_list_str = ', '.join(today_list) or 'stograncasso'
+            today_list = [
+                anime["name"]
+                for anime in AIRING_ANIME
+                if anime["airing_day"] == selected_day and anime.get("name")
+            ]
+            # Filter out None values and ensure all items are strings
+            today_list = [str(name) for name in today_list if name]
+            today_list_str = ", ".join(today_list) if today_list else "stograncasso"
             speak_output = f"{unparsed_day.title()}, ci sono in programma le uscite di: {today_list_str}"
         else:
             speak_output = f"Scusa bro, Non ho capito che giorno intendi!"
@@ -222,7 +237,9 @@ class AllAnimeIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        airing_list = [anime['name'] for anime in AIRING_ANIME]
+        airing_list = [anime["name"] for anime in AIRING_ANIME if anime.get("name")]
+        # Filter out None values and ensure all items are strings
+        airing_list = [str(name) for name in airing_list if name]
 
         speak_output = f"Al momento gli anime di cui ho informazioni sono: {', '.join(airing_list)}"
 

@@ -116,10 +116,11 @@ Use ASK CLI's `ask dialog` command for an interactive terminal chat interface:
    ask dialog -s amzn1.ask.skill.fc486ef7-e2c2-4817-bbb1-e8c96a6967ef -l it-IT -g development
    ```
    
-   Or if you're in the project directory, ASK CLI can auto-detect the skill:
+   **Note:** You must specify the skill ID with `-s` flag. To find your skill ID:
    ```bash
-   ask dialog -l it-IT -g development
+   cat ask-resources.json
    ```
+   Look for `"skillId"` — yours is: `amzn1.ask.skill.fc486ef7-e2c2-4817-bbb1-e8c96a6967ef`
 
 3. **Type your utterances** in the terminal and see responses interactively!
 
