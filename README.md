@@ -149,70 +149,19 @@ Use ASK CLI's `ask dialog` command for an interactive terminal chat interface:
    - Enable testing (toggle to "Development")
    - Type or speak your utterances to test
 
-## 🤖 Automated Deployment with GitHub Actions
+## 🔄 Git Workflow
 
-This project includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that automatically deploys your skill when you push to the `main` branch.
+**Branch Strategy:**
+- **`develop` branch** → Use for development/testing
+- **`main` branch** → Stable releases
 
-**Workflow:**
-- **`develop` branch** → Use for development/testing (no auto-deploy)
-- **`main` branch** → Auto-deploys to **development** stage when pushed
-- **Promote to Live** → After deployment, manually promote to live via Alexa Developer Console
+**Deployment:**
+Deploy manually using:
+```bash
+ask deploy
+```
 
-**Note:** For hosted skills, `ask deploy` always deploys to the development stage. To promote to production/live, go to the Alexa Developer Console → Your Skill → Code tab → Click "Deploy" to promote.
-
-### Setting Up GitHub Actions
-
-1. **Get your ASK CLI tokens:**
-   
-   **Option A: Find existing tokens (if ASK CLI is already configured):**
-   
-   If you've already run `ask configure` on your local machine, your tokens are stored in:
-   ```bash
-   ~/.ask/cli_config
-   ```
-   
-   To view them:
-   ```bash
-   cat ~/.ask/cli_config
-   ```
-   
-   Look for the `access_token` and `refresh_token` values in the JSON file under `profiles.default.token`.
-   
-   **Option B: Generate new tokens:**
-   
-   If you don't have tokens or want to generate fresh ones:
-   ```bash
-   ask util generate-lwa-tokens
-   ```
-   
-   This command will:
-   - Open a browser for you to log in to your Amazon Developer account
-   - Generate and display your `access_token` and `refresh_token`
-   - Copy these values - you'll need them for the next step
-   
-   **Note:** Make sure you have the `ask-resources.json` file in your repository (already included) with your skill ID configured.
-
-   **Important about token expiration:**
-   - `access_token` expires in **1 hour** - but this is OK! 
-   - `refresh_token` is **long-lived (30-90 days)** and is what matters
-   - The ASK CLI **automatically uses the refresh_token to get a new access_token** when it expires
-   - You only need to update GitHub Secrets when the **refresh_token expires** (every 30-90 days), not every hour!
-
-2. **Add secrets to GitHub:**
-   - Go to your GitHub repository
-   - Navigate to **Settings** → **Secrets and variables** → **Actions**
-   - Add the following secrets:
-     - `ASK_ACCESS_TOKEN` - Your ASK CLI access token
-     - `ASK_REFRESH_TOKEN` - Your ASK CLI refresh token
-
-3. **Push to trigger deployment:**
-   - Push to `develop` branch → automatically deploys to development stage
-   - Push to `main` branch → automatically deploys to live/production stage
-
-The workflow will:
-- ✅ Install ASK CLI
-- ✅ Configure authentication
-- ✅ Deploy the skill manifest, interaction models, **and Lambda function** to the appropriate stage
+This will deploy to the **development** stage. To promote to **live/production**, use the Alexa Developer Console → Your Skill → Code tab → Click "Deploy".
 
 ## 📁 Project Structure
 
