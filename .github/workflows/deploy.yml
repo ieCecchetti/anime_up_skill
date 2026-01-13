@@ -3,8 +3,7 @@ name: Deploy Alexa Skill
 on:
   push:
     branches:
-      - main  # Only deploy from main branch (stable releases)
-
+      - develop 
 jobs:
   deploy:
     runs-on: ubuntu-latest
